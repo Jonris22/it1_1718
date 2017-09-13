@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px|Source+Sans+Pro|Yantramanav');
+
+body{
+    background: teal;
+}
+
+h1{
+    font-family: 'yantramanav', sans-serif;
+    color: red;
+    text-align: center;
+}
+
+h2 {
+    font-family: "Source Code Pro", sans-serif;
+    color: mediumvioletred;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 0 0;
+    font-size: 20px;
+    text-decoration: none;
+    text-align: center;
+    border: 3px solid mediumvioletred;
+    border-radius: 15px;
+    max-width: 200px;
+    margin: auto;
+}
+
+
+h2:hover{
+    color: darkred;
+    border: 5px solid darkred;
+}
