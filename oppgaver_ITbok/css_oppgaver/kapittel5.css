@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px|Source+Sans+Pro|Yantramanav');
+
+h6{
+    font-family: 'yantramanav', sans-serif;
+    font-size: 110%;
+    color: blue;
+}
+
+p2{
+    color: midnightblue;
+    font-family: "Source Code Pro", sans-serif
+}
+
+p3{
+    color: chartreuse;
+    border: dashed chartreuse;
+    font-family: "Source Code Pro", sans-serif;
+}
