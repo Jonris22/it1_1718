@@ -1,0 +1,60 @@
+body{
+    background: teal;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: red;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: teal;
+}
+
+h2{
+    color: red;
+}
+
+form{
+    color: white;
+}
+
+input[type="text"] {
+    display: block;
+    border: none;
+    width: 239px;
+    padding: 3px;
+    color: red;
+}
+
+select{
+    display: block;
+    border: none;
+    padding: 3px;
+    width: 244px;
+    color: red;
+}
+
+input[type="submit"] {
+    display: block;
+    padding: 8px 15px;
+    font-weight: bold;
+}
+
+
+

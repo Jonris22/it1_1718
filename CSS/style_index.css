@@ -38,6 +38,7 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: red;
+    width: auto;
 }
 
 li {
@@ -54,4 +55,15 @@ li a {
 
 li a:hover {
     background-color: teal;
+}
+
+hr{
+    width: 70%;
+}
+
+.emblem {
+    position: absolute;
+    top: 7px;
+    right: 0;
+    width: 7%;
 }

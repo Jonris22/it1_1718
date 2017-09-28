@@ -4,47 +4,7 @@
     <meta charset="UTF-8">
     <title>Forms</title>
 
-    <style>
-
-        body{
-            background: teal;
-        }
-
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: red;
-        }
-
-        li {
-            float: left;
-        }
-
-        li a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 16px;
-            text-decoration: none;
-        }
-
-        li a:hover {
-            background-color: teal;
-        }
-
-        h2{
-            color: red;
-        }
-
-        form{
-            color: white;
-        }
-
-
-
-    </style>
+    <link rel="stylesheet" href="html_filer_css/forms.css">
 
 </head>
 <body>
@@ -59,11 +19,18 @@
 
     <h2>Forms - skjerma</h2>
 
-        <form action="">
-            Navn <input type="text"> <br>
-            Programfag 1 <input type="text"> <br>
-            Programfag 2 <input type="text"> <br>
-            Programfag 3 <input type="text"> <br>
+        <form method="GET">
+            Navn <br> <input type="text"> <br>
+            Kjønn<br>   <select>
+                <option value=" "> </option>
+                <option value="volvo">Kvinne</option>
+                <option value="saab">Man</option>
+                <option value="opel">Bell OH-58 Kiowa angrepshelikopter</option>
+                <option value="audi">Non-binary</option>
+            </select> <br>
+            Programfag 1<br> <input type="text"> <br>
+            Programfag 2<br> <input type="text"> <br>
+            Programfag 3<br> <input type="text"> <br>
 
             <input type="submit" value="Send inn søknad">
         </form>
