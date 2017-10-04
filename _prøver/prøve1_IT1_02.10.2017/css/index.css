@@ -1,0 +1,93 @@
+body{
+    background-color: #28abe3;
+    font-family: sans-serif;
+}
+
+div.oppgave{
+    width: 1000px;
+    padding: 50px;
+    background-color: #f7eac8;
+    min-height: 300px;
+    margin: 80px auto;
+    position: relative;
+}
+
+h1{
+    color: #db3340;
+    font-size: 100px;
+    text-align: center;
+}
+
+h2{
+    color: #37422e;
+    margin-top: -80px;
+    text-align: center;
+}
+
+h3{
+    background-color: #b89115;
+    font-size: 100px;
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    left: -60px;
+    top: -60px;
+    text-align: center;
+    border-radius: 60px;
+    margin: 0;
+    color: white;
+}
+
+img{
+    display: block;
+    margin: auto;
+}
+
+.lipsum{
+    color: #b89115;
+}
+
+ul{
+    border: solid #b89115;
+    list-style: none;
+    width: 200px;
+    color: white;
+    background-color: #28abe3;
+    padding: 35px;
+    border-radius: 30%;
+}
+
+ol{
+    border: dotted #b89115 5px;
+    width: 200px;
+    background-color: #28abe3;
+    color: white;
+    position: absolute;
+    top: 16%;
+    left: 35%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+form{
+    border: solid #b89115;
+    background-color: #28abe3;
+    width: 200px;
+    padding-left: 95px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-right: 75px;
+    color: white;
+    border-radius: 100%;
+}
+
+video{
+    width: 400px;
+    height: 300px;
+    border: solid #b89115;
+    border-radius: 100%;
+}
+
+select{
+    width: 40px;
+}
