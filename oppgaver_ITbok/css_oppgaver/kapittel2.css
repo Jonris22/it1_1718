@@ -1,0 +1,34 @@
+
+
+.hovedkort{
+    border: 3px solid red;
+    width: 250px;
+    padding: 10px;
+}
+
+.prosessor{
+    border: 3px solid red;
+    width: 250px;
+    padding: 10px;
+    position: absolute;
+    top: 175px;
+    left: 285px;
+}
+
+.arbeidsminne{
+    border: 3px solid red;
+    width: 250px;
+    padding: 10px;
+    position: absolute;
+    top: 175px;
+    left: 562px;
+}
+
+.lagringsmedium{
+    border: 3px solid red;
+    width: 500px;
+    padding: 10px;
+    position: absolute;
+    top: 175px;
+    left: 839px;
+}
