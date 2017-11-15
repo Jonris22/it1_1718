@@ -2,6 +2,7 @@
 
 body{
     background: whitesmoke;
+    margin: 0;
 }
 
 h1{
@@ -60,11 +61,4 @@ li a:hover {
 
 hr{
     width: 70%;
-}
-
-.emblem {
-    position: absolute;
-    top: 7px;
-    right: 0;
-    width: 7%;
 }

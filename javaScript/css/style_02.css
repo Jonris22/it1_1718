@@ -1,0 +1,47 @@
+body{
+    margin: 0;
+    background-color: #437601;
+    background-image: url(https://d30y9cdsu7xlg0.cloudfront.net/png/27302-200.png);
+    background-repeat: no-repeat;
+    background-size: 1000px;
+    background-position-x: 30px;
+    background-position-y: -170px;
+}
+
+div#ball {
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: inline-block;
+
+}
+
+img{
+    width: 100px;
+    height: 55px;
+    cursor: pointer;
+}
+
+.leaderboard{
+    background-color: red;
+    border: solid 5px darkred;
+    width: 280px;
+    position: fixed;
+    left: 1078px;
+}
+h2{
+    position: relative;
+    left: 40px;
+    color: whitesmoke;
+}
+ul{
+    list-style: none;
+    padding-left: 20px;
+}
+li{
+    color: whitesmoke;
+    font-size: 130%;
+}
+

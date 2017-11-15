@@ -1,12 +1,13 @@
 body{
     background: whitesmoke;
+    margin: 0;
 }
 
 
 h1{
     text-align: center;
     color: red;
-    font-size:300%;
+    font-size:200%;
 }
 
 ol{
@@ -68,8 +69,57 @@ ol li{
 }
 
 .plorem{
-    position: relative;
-    left: 38%;
-    width: 300px;
+    width: 100px;
     text-align: center;
+    grid-area: plorem;
+    position: absolute;
+    left: 220px;
+}
+
+.nothing{
+    color: whitesmoke;
+    grid-area: nothing;
+}
+
+.grid{
+    display: grid;
+    grid-template-rows: 70fr 69fr;
+    grid-template-areas:
+    "nothing    plorem"
+    ;
+}
+
+@media (min-width: 500px){
+
+    .plorem{
+        width: 250px;
+    }
+
+}
+
+@media (min-width: 700px) {
+
+    .plorem{
+        width: 400px;
+        left: 300px;
+    }
+
+}
+
+@media (min-width: 850px) {
+
+    .plorem{
+        width: 450px;
+        left: 350px;
+    }
+
+}
+
+@media (min-width: 1000px) {
+
+    .plorem{
+        width: 500px;
+        left: 400px;
+    }
+
 }

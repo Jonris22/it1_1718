@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>querySelector</title>
+
+    <link rel="stylesheet" href="css/style_01_qS.css">
+</head>
+<body>
+
+    <div id="boks">Ting</div>
+
+    <div id="tall"></div>
+
+    <br>
+
+    <button type="button" id="knapp1" onclick="alert('Laster ned dome.bat nå..')">Trykk her</button>
+
+    <script>
+
+        document.querySelector('#boks').innerHTML += " goes skrrra!";
+
+        //løkke eller for-løkke
+
+        for(var i = 1; i<=24; i++) {
+            document.querySelector('#tall').innerHTML += "<span>" + i + "</span>" + " ";
+
+            if (i%3==0) {
+                document.querySelector('#tall').innerHTML += "<span class='red'>" + i + "</span>" + " ";
+            }
+            else if (i%5==0){
+                document.querySelector('#tall').innerHTML += "<span class='blue'>" + i + "</span>" + " ";
+            }
+            else {
+                document.querySelector('#tall').innerHTML += "<span class='green'>" + i + "</span>" + " ";
+            }
+
+        }
+
+
+    </script>
+
+</body>
+</html>

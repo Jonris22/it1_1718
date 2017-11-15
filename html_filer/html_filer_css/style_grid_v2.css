@@ -1,0 +1,61 @@
+body{
+    margin: 0;
+}
+
+.grid{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+    "side   side"
+    "header header"
+    "aside1 aside2"
+    "main   main"
+    "footer footer"
+    ;
+}
+
+.header{
+    grid-area: header;
+    text-align: center;
+    background-color: #006989;
+}
+
+.main{
+    grid-area: main;
+    background-color: #007090;
+    padding: 20px;
+}
+.main p::first-letter{
+    font-size: 200%;
+}
+
+.side{
+    grid-area: side;
+}
+.side img{
+    width: 400px;
+}
+
+.aside1{
+    grid-area: aside1;
+    text-align: center;
+    background-color: #A3BAC3;
+}
+.aside1:hover{
+    background-color: #006989;
+}
+
+.aside2{
+    grid-area: aside2;
+    text-align: center;
+    background-color: #A3BAC3;
+}
+.aside2:hover{
+    background-color: #006989;
+}
+
+.footer{
+    grid-area: footer;
+    background-color: #01A7C2;
+    padding-left: 20px;
+}
