@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nettsikkerhet simulator</title>
+
+    <link rel="stylesheet" href="../css/style_.css">
+</head>
+<body>
+
+<div class="gridn">
+
+    <div class="gameneste">
+        <div id="gamen">
+            <img src="../bilder/person_computer.png">
+        </div>
+
+        <div class="targetn">
+            <img src="../bilder/cyber_safety.png">
+        </div>
+
+        <h4>Prøv å komme deg til nettsikkerhet!</h4>
+
+    </div>
+
+    <div class="controls_smallscreen">
+        <div class="blank1n"></div>
+        <div class="blank2n"></div>
+        <button class="giveupbuttonn" type="button" onclick="alert('Du kan aldri være 100% trygg på nettet')">Gi opp?</button>
+        <div class="blank4n"></div>
+        <div class="blank5n"></div>
+        <button class="button1n" type="button" onclick="up()">Opp</button>
+        <button class="button2n" type="button" onClick="left()">Venstre</button>
+        <button class="button3n" type="button" onClick="right()">Høyre</button>
+        <button class="button4n" type="button" onClick="down()">Ned</button>
+    </div>
+
+</div>
+
+<div class="navspill">
+    <ul>
+        <li><a href="hvordan_vaere_trygg.html">Nettvett del 1</a></li>
+        <li><a href="hvordan_vaere_trygg_2.html">Nettvett del 2</a></li>
+        <li><a href="logo.html">Logo</a></li>
+    </ul>
+</div>
+
+<script>
+
+    var ballLeft = 0;
+    var ballTop= 0;
+    var divBall = document.querySelector("#gamen");
+
+    function down(){
+        ballTop += 180;
+        divBall.style.top = ballTop + "px";
+    }
+    function up() {
+        ballTop -= 180;
+        divBall.style.top = ballTop + "px";
+    }
+    function left() {
+        ballLeft -= 180;
+        divBall.style.left = ballLeft + "px";
+    }
+    function right() {
+        ballLeft += 180;
+        divBall.style.left = ballLeft + "px";
+    }
+
+    document.onkeydown = function(evt) {
+        evt = evt || window.event;
+        if(evt.keyCode === 40)
+        {
+            ballTop += 180;
+            divBall.style.top = ballTop + "px";
+        }
+        else if(evt.keyCode === 38){
+            ballTop -= 180;
+            divBall.style.top = ballTop + "px";
+        }
+        else if(evt.keyCode === 39)
+        {
+            ballLeft += 180;
+            divBall.style.left = ballLeft + "px";
+        }
+        else if(evt.keyCode === 37){
+            ballLeft -= 180;
+            divBall.style.left = ballLeft + "px";
+        }
+
+    };
+</script>
+
+</body>
+</html>

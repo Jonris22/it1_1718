@@ -1,0 +1,10 @@
+.form{
+    border: solid 2px red;
+    width: 200px;
+    background: whitesmoke;
+    padding: 10px;
+}
+
+.tilbakemelding{
+    height: auto;
+}

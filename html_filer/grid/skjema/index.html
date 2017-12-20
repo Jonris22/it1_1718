@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Skjema</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="skjemapakker">
+
+        <div class="skjemainfo">
+            <h3>Fyll inn</h3>
+            <ul>
+                <li>Molde VGS</li>
+                <li>Øvre veg 23</li>
+                <li>6413 Molde</li>
+            </ul>
+        </div>
+
+        <form class="skjemaform">
+
+            <p>
+                <label for="">Fornavn:</label> <br>
+                <input type="text" placeholder="Ralf" class="fornavn">
+            </p>
+            <p>
+                <label for="">Etternavn:</label> <br>
+                <input type="text" placeholder="Ulf" class="etternavn">
+            </p>
+            <p>
+                <label for="">Telefonnummer:</label> <br>
+                <input type="tel" placeholder="69105" class="tlf">
+            </p>
+            <p>
+                <label for="">Epost:</label> <br>
+                <input type="email" placeholder="ralf@ulf.com" class="epost">
+            </p>
+
+            <p class="full">
+                <label for="">Spørsmål:</label> <br>
+                <textarea name="" id="" cols="30" rows="10" placeholder="Hva lurer du på?" class="text"></textarea>
+            </p>
+            <p class="full">
+                <button class="sendit">Send inn</button>
+            </p>
+
+        </form>
+
+    </div>
+
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js">
+</script><script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js">
+</script><script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+body{
+    background-color: red;
+}
+
+.pakker{
+    width: 500px;
+    margin: auto;
+    background-color: whitesmoke;
+    text-align: center;
+}

@@ -1,0 +1,30 @@
+body{
+    text-align: center;
+    background-color: red;
+}
+
+h1{
+    color: gold;
+    font-size: 300%;
+}
+
+.pakker{
+    max-width: 1000px;
+    margin: auto;
+    background-color: whitesmoke;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.luke{
+    width: 250px;
+    height: 250px;
+    font-size: 210px;
+    background-color: #3a8249;
+    color: gold;
+}
+.luke:hover{
+    background-color: red;
+    color: #3a8249;
+}

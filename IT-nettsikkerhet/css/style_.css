@@ -1,0 +1,585 @@
+@import url('https://fonts.googleapis.com/css?family=Barlow+Condensed');
+
+body{
+    margin: 0;
+    background-color: black;
+    color: #00ff00;
+    font-family: 'Barlow Condensed', sans-serif;
+}
+
+h2{
+    color: red;
+}
+
+.mainindex{
+    position: absolute;
+    top: 230px;
+    left: 90px;
+    font-size: 270%;
+    }
+
+.label:after{
+    content:'Datasikkerhet';
+}
+.label:hover:after{
+    content:'Datausikkerhet';
+    color: #00ff00;
+    text-shadow: 3px 3px #00ff00;
+    text-emphasis-color: #28abe3;
+    position: relative;
+    right: 10px;
+}
+
+.span1{
+    color: #28abe3;
+    text-shadow: 3px 3px #28abe3;
+}
+
+.smh1{
+    text-align: center;
+    font-size: 300%;
+}
+.but{
+    display: block;
+    margin: auto;
+    width: 350px;
+    height: 50px;
+    font-size: 150%;
+    background-color: #00ff00;
+    color: black;
+}
+
+.smp1{
+    text-align: center;
+    font-size: 70%;
+}
+.smdisc{
+    font-size: 110%;
+}
+
+.ball{
+    border: solid 2px #00ff00;
+    background-color: #00ff00;
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+    color: black;
+    text-align: center;
+    position: absolute;
+    top: 400px;
+    left: 30%;
+}
+.ball p{
+    font-size: 250%;
+    position: relative;
+    top: -10px;
+}
+
+.gridpg{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+    "headerpg   headerpg    headerpg"
+    "aside1pg   aside2pg    aside3pg"
+    "mainpg     mainpg      mainpg"
+    "footerpg   footerpg    footerpg"
+    ;
+}
+.headerpg{
+    grid-area: headerpg;
+    text-align: center;
+    font-size: 120%;
+}
+.mainpg{
+    grid-area: mainpg;
+    text-align: center;
+}
+.aside1pg{
+    grid-area: aside1pg;
+    background-color: #00ff00;
+    color: black;
+    text-align: center;
+    font-size: 150%;
+}
+.aside1pg:hover{
+    background-color: green;
+    color: whitesmoke;
+}
+.aside1pg p{
+    position: relative;
+    top: 10px;
+}
+.aside2pg{
+    grid-area: aside2pg;
+    background-color: #00ff00;
+    color: black;
+    text-align: center;
+    font-size: 150%;
+}
+.aside2pg:hover{
+    background-color: green;
+    color: whitesmoke;
+}
+.aside2pg p{
+    position: relative;
+    top: 10px;
+}
+.aside3pg{
+    grid-area: aside3pg;
+    background-color: #00ff00;
+    color: black;
+    text-align: center;
+    font-size: 150%;
+}
+.aside3pg:hover{
+    background-color: green;
+    color: whitesmoke;
+}
+.aside3pg p{
+    position: relative;
+    top: 10px;
+}
+.footerpg{
+    grid-area: footerpg;
+    text-align: center;
+}
+.footerpg p{
+    font-size: 70%;
+}
+.blankpg{
+    grid-area: blankpg;
+    position: absolute;
+}
+.menupg{
+    grid-area: menupg;
+    list-style: none;
+    color: transparent;
+    position: absolute;
+}
+.menupg a{
+    text-decoration: none;
+    color: transparent;
+}
+
+.gridn{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+    "gameneste"
+    "controls_smallscreen"
+    ;
+}
+
+.gameneste{
+    grid-area: gameneste;
+    height: 300px;
+    background-color: whitesmoke;
+}
+.gameneste h4{
+    position: absolute;
+    left: 250px;
+    top: 0;
+    color: transparent;
+    animation-name: instructiontextn;
+    animation-duration: 10s;
+}
+@keyframes instructiontextn {
+    from {color: transparent}
+    to {color: black}
+}
+
+.controls_smallscreen{
+    grid-area: controls_smallscreen;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+    "blank1n    button1n          blank2n"
+    "button2n   giveupbuttonn     button3n"
+    "blank4n    button4n          blank5n"
+    ;
+    background-color: black;
+}
+.blank1n{
+    grid-area: blank1n;
+    }
+.blank2n{
+    grid-area: blank2n;
+    }
+.giveupbuttonn{
+     grid-area: giveupbuttonn;
+    }
+.blank4n{
+      grid-area: blank4n;
+    }
+.blank5n{
+       grid-area: blank5n;
+    }
+.button1n{
+    grid-area: button1n;
+}
+.button2n{
+    grid-area: button2n;
+}
+.button3n{
+    grid-area: button3n;
+}
+.button4n{
+    grid-area: button4n;
+}
+
+.controls_smallscreen div{
+    width: 50px;
+    height: 50px;
+}
+
+.giveupbuttonn{
+    width: 40px;
+    height: 40px;
+    margin-top: 30px;
+    margin-left: 45px;
+}
+
+div#gamen{
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: inline-block;
+}
+div#gamen img{
+    width: 100px;
+    height: 100px;
+}
+
+.targetn{
+    position: absolute;
+    top: 80px;
+    left: 120px;
+}
+.targetn img{
+    width: 250px;
+}
+
+.navspill ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: whitesmoke;
+    width: auto;
+    position: absolute;
+    bottom: 0;
+}
+
+.navspill li {
+    float: left;
+}
+
+.navspill li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 11px;
+    text-decoration: none;
+}
+
+.navspill li a:hover {
+    background-color: black;
+    color: whitesmoke;
+}
+
+.gridlogo{
+    display: grid;
+    grid-template-areas:
+    "header"
+    "nav"
+    "main"
+    "footer"
+    ;
+    color: #00ff00;
+}
+.header{
+    grid-area: header;
+    text-align: center;
+}
+.nav{
+    grid-area: nav;
+}
+.nav ul{
+    overflow: hidden;
+    list-style-type: none;
+    width: auto;
+    background-color: #00ff00;
+}
+.nav li{
+    float: left;
+    margin: 5px;
+    background-color: black;
+    color: #00ff00;
+    padding: 5px;
+}
+.nav li:hover{
+    background-color: #00ff00;
+    color: black;
+}
+.nav a{
+    text-decoration: none;
+}
+.main{
+    grid-area: main;
+}
+.main img{
+    width: 300px;
+    position: absolute;
+    top: 150px;
+    left: -90px;
+}
+.main p{
+    position: absolute;
+    top: 130px;
+    left: 150px;
+}
+.main ul{
+    position: absolute;
+    top: 320px;
+    left: 0;
+}
+.main table{
+    position: absolute;
+    top: 320px;
+    left: 200px;
+}
+.overskriftlilogo{
+     list-style-type: none;
+     position: relative;
+     right: 20px;
+ }
+.footer{
+    grid-area: footer;
+    text-align: left;
+    position: absolute;
+    bottom: 0;
+}
+
+
+
+@media (min-width: 400px){
+    .ball{
+        left: 35%;
+    }
+}
+
+@media (min-width: 600px){
+    .ball{
+        top: 350px;
+        left: 37%;
+    }
+}
+
+@media (min-width: 700px) {
+    .mainindex {
+        top: 200px;
+        left: 250px;
+        font-size: 500%;
+        color: deepskyblue;
+    }
+
+    .label:hover:after {
+        color: red;
+        text-shadow: 2px 2px red;
+    }
+
+    .gridpg {
+        grid-template-rows: 100px 1fr 1fr 50px;
+        grid-template-columns: 4fr 1fr;
+        grid-template-areas: "headerpg   menupg" "mainpg     blankpg" "mainpg     blankpg" "footerpg   blankpg";
+    }
+
+    .aside1pg {
+        background-color: black;
+        width: 0;
+        height: 0;
+        color: black;
+        position: absolute;
+        font-size: 0;
+    }
+
+    .aside2pg {
+        background-color: black;
+        width: 0;
+        height: 0;
+        color: black;
+        position: absolute;
+        font-size: 0;
+    }
+    .aside3pg{
+        width: 0;
+        height: 0;
+        color: black;
+    }
+
+    .menupg {
+        position: fixed;
+        right: 0;
+        top: 200px;
+    }
+
+    .menupg li {
+        border: solid black 2px;
+        background-color: #00ff00;
+        padding: 10px;
+        color: black;
+        width: 130px;
+    }
+
+    .menupg h4 {
+        font-size: 130%;
+    }
+
+    .menupg ul a {
+        text-decoration: none;
+    }
+
+    .menupgli:hover {
+        background-color: green;
+        color: whitesmoke;
+    }
+
+    .gridn {
+        grid-template-columns: 1fr;
+        grid-template-areas: "navspill";
+    }
+
+    .controls_smallscreen {
+        width: 0;
+        height: 0;
+        background-color: transparent;
+    }
+
+    .controls_smallscreen button {
+        position: absolute;
+        color: transparent;
+        background-color: transparent;
+        border: solid 0 transparent;
+        left: 0;
+        top: 0;
+    }
+
+    .controls_smallscreen div {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .targetn {
+        left: 520px;
+        top: 260px;
+    }
+
+    .navspill {
+        position: absolute;
+        right: 70px;
+        top: 300px;
+        float: none;
+    }
+
+    .navspill li {
+        float: none;
+    }
+
+    @keyframes instructiontextn {
+        from {
+            color: transparent
+        }
+        to {
+            color: whitesmoke
+        }
+    }
+
+    .gridlogo {
+        grid-template-columns: 3fr 1fr;
+        grid-template-areas: "header header" "main   nav" "main   footer";
+    }
+
+    .main p {
+        width: 400px;
+    }
+
+    .main ul {
+        left: auto;
+        right: 0;
+    }
+
+    .main img {
+        top: 120px;
+    }
+
+    .nav li {
+        float: none;
+    }
+}
+
+
+@media (min-width: 800px) {
+    .ball{
+        left: 600px;
+        top: 300px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .ball{
+        left: auto;
+        top: 250px;
+        right: 100px;
+        width: 200px;
+        height: 200px;
+    }
+    .ball:hover{
+        background-color: green;
+        color: whitesmoke;
+    }
+    .ball p{
+        top: 10px;
+    }
+
+    .but:hover{
+        background-color: green;
+        color: whitesmoke;
+    }
+
+    .smp1{
+        position: relative;
+        top: 40px;
+    }
+
+    .main p{
+        width: 600px;
+        font-size: 150%;
+        left: 200px;
+    }
+    .main img{
+        width: 500px;
+        top: 100px;
+        left: -170px;
+    }
+    .main ul{
+        font-size: 150%;
+        right: 30px;
+    }
+}
+
+@media (min-width: 1300px) {
+    .main ul{
+        right: 100px;
+    }
+    .main p{
+        left: 300px;
+    }
+    .main img{
+        left: -90px;
+    }
+}
