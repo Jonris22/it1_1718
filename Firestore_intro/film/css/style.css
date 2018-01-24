@@ -9,6 +9,38 @@ body{
     max-width: 1024px;
     margin: auto;
     box-shadow: #033b42 -5px 5px 20px;
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+    grid-template-columns: 1fr 5fr;
+    grid-template-areas:
+    "header    header"
+    "nav    main"
+    "nav    main"
+    ;
+}
+
+.nav{
+    grid-area: nav;
+    background-color: #0070a4;
+}
+.nav ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: auto;
+}
+.nav a{
+    text-decoration: none;
+    color: lightskyblue;
+    padding: 15px;
+    background-color: #0070a4;
+    display: block;
+    text-align: center;
+}
+.nav a:hover{
+    background-color: whitesmoke;
+    color: black;
 }
 
 .skjemainfo{
@@ -16,6 +48,7 @@ body{
     color: lightskyblue;
     text-align: center;
     padding: 10px;
+    grid-area: header;
 }
 .skjemainfo ul{
     list-style: none;
@@ -35,6 +68,7 @@ body{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 15px;
+    grid-area: main;
 }
 .skjemaform p{
     margin: 0;
@@ -107,4 +141,44 @@ h3{
 }
 .filmlistetop10 ol{
     list-style: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+#myInput {
+    font-size: 16px;
+    border: 1px solid #ddd;
+    max-height: 50px;
+}
+
+#myUL {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 250px;
+    width: 850px;
+}
+
+#myUL li a {
+    border: 1px solid #ddd;
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #f6f6f6;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block
+}
+
+#myUL li a:hover:not(.header) {
+    background-color: #eee;
+}
+
+#genreSearch{
+    height: 50px;
+    position: relative;
+    top: 10px;
 }

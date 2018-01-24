@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="skjemapakker">
+
+    <div class="skjemainfo">
+        <h3>Filmregistreringsnettside</h3>
+    </div>
+
+    <div class="skjemaform">
+
+        <h2>Søk blandt filmer</h2>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+        <ul id="myUL">
+
+        </ul>
+    </div>
+
+    <div class="nav">
+        <ul>
+            <li><a href="html/reg.html">Registering</a></li>
+            <li><a href="html/top10.html">Top 10</a></li>
+            <li><a href="html/bot10.html">Bot 10</a></li>
+            <li><a href="html/kateg.html">Søk med Kategori</a></li>
+            <li><a href="html/alle.html">Alle filmer</a></li>
+        </ul>
+    </div>
+
+</div>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+<script>
+    firebase.initializeApp({
+        apiKey: "AIzaSyBgMPvrHxT5aVsoqdJJyAADgjftCUBL-eY",
+        authDomain: "db01firebase.firebaseapp.com",
+        databaseURL: "https://db01firebase.firebaseio.com",
+        projectId: "db01firebase",
+        storageBucket: "db01firebase.appspot.com",
+        messagingSenderId: "678434557876"
+    });
+
+    // Initialize Cloud Firestore through Firebase
+    var db = firebase.firestore();
+
+
+    function myFunction() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myUL");
+        li = ul.getElementsByTagName("li");
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+
+            }
+        }
+    }
+
+    var filmene = document.querySelector('#myUL');
+
+    var mappe = db.collection('film_db').orderBy('title', 'asc');
+    mappe.onSnapshot(function(data) {
+        filmene.innerHTML = "";
+        var plass = 0;
+        var dokumenter = data.docs;
+        for (var x in dokumenter) {
+            var plass = x*1+1
+            filmene.innerHTML += '<li><a href="#">' + dokumenter[x].data().title + '</a></li>'
+        }
+    });
+</script>
+</body>
+</html>

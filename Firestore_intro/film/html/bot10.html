@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bottom 10</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="skjemapakker">
+
+    <div class="skjemainfo">
+        <h3>De 10 værste filmene:</h3>
+    </div>
+
+    <div class="skjemaform">
+        <table width="100%">
+            <thead>
+            <tr>
+                <th class="table1">Plassering</th><th class="table2">Tittel</th><th class="table3">Poeng</th>
+            </tr>
+            </thead>
+            <tbody class="filmenetop10">
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="nav">
+        <ul>
+            <li><a href="../index.html">Index</a></li>
+            <li><a href="reg.html">Registrering</a></li>
+            <li><a href="top10.html">Top 10</a></li>
+            <li><a href="kateg.html">Søk med Kategori</a></li>
+            <li><a href="alle.html">Alle filmer</a></li>
+        </ul>
+    </div>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+<script>
+    firebase.initializeApp({
+        apiKey: "AIzaSyBgMPvrHxT5aVsoqdJJyAADgjftCUBL-eY",
+        authDomain: "db01firebase.firebaseapp.com",
+        databaseURL: "https://db01firebase.firebaseio.com",
+        projectId: "db01firebase",
+        storageBucket: "db01firebase.appspot.com",
+        messagingSenderId: "678434557876"
+    });
+
+    // Initialize Cloud Firestore through Firebase
+    var db = firebase.firestore();
+
+    var filmene = document.querySelector('.filmenetop10');
+
+    var mappe = db.collection('film_db').orderBy('rating', 'asc').limit(10);
+    mappe.onSnapshot(function(data) {
+        filmene.innerHTML = "";
+        var plass = 0;
+        var dokumenter = data.docs;
+        for (var x in dokumenter) {
+            var plass = x*1+1
+            filmene.innerHTML += '<tr><th class="table1">' + plass + '</th><th class="table2">' + dokumenter[x].data().title + '</th><th class="table3">' + dokumenter[x].data().rating + '</th></tr>'
+        }
+    });
+
+</script>
+</body>
+</html>

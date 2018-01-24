@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kategorier</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="skjemapakker">
+
+    <div class="skjemainfo">
+        <h3>Filmregistreringsnettside</h3>
+    </div>
+
+    <div class="skjemaform">
+
+        <h2>Søk blandt filmer</h2>
+        <select id="genreSearch">
+            <option value="0"> </option>
+            <option value="Action">Action</option>
+            <option value="scifi">Sci-Fi</option>
+            <option value="komedie">Komedie</option>
+            <option value="drama">Drama</option>
+            <option value="grøsser">Grøsser</option>
+        </select>
+
+        <ul id="myUL">
+
+        </ul>
+    </div>
+
+    <div class="nav">
+        <ul>
+            <li><a href="../index.html">Index</a></li>
+            <li><a href="reg.html">Registering</a></li>
+            <li><a href="top10.html">Top 10</a></li>
+            <li><a href="bot10.html">Bot 10</a></li>
+            <li><a href="alle.html">Alle filmer</a></li>
+        </ul>
+    </div>
+
+</div>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+<script>
+    firebase.initializeApp({
+        apiKey: "AIzaSyBgMPvrHxT5aVsoqdJJyAADgjftCUBL-eY",
+        authDomain: "db01firebase.firebaseapp.com",
+        databaseURL: "https://db01firebase.firebaseio.com",
+        projectId: "db01firebase",
+        storageBucket: "db01firebase.appspot.com",
+        messagingSenderId: "678434557876"
+    });
+
+    // Initialize Cloud Firestore through Firebase
+    var db = firebase.firestore();
+
+    var filmene = document.querySelector('#myUL');
+    var inputGenere = document.querySelector('#genreSearch');
+    var search = "";
+    inputGenere.addEventListener('change', function () {
+        search = inputGenere.value;
+        filmene.innerHTML = "";
+        var ref = db.collection('film_db');
+        var query = ref.where('genre', '==', search);
+        query.onSnapshot(function (data) {
+            var dokument = data.docs;
+            for(var x in dokument){
+                filmene.innerHTML += "<li><a>" + dokument[x].data().title + ', ' + dokument[x].data().rating + "</a></li>";
+            }
+        });
+    });
+
+
+</script>
+</body>
+</html>

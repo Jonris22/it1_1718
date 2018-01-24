@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Film registrering</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+
+
+<div class="skjemapakker">
+
+    <div class="skjemainfo">
+        <h1>Registrer en film</h1>
+    </div>
+
+    <div class="skjemaform">
+    <h3> Title: </h3> <input type="text" id="title" placeholder="Movie title">
+    <h3>Genre: </h3>   <select id="genre">
+    <option value="0"> </option>
+    <option value="Action">Action</option>
+    <option value="scifi">Sci-Fi</option>
+    <option value="komedie">Comedy</option>
+    <option value="drama">Drama</option>
+    <option value="grøsser">Thriller</option>
+</select>
+    <h3>Year: </h3> <input type="number" id="year" placeholder="When it was released">
+    <h3>Rating: </h3> <input type="range" min="0" max="69105" value="0" step="5" id="rating">
+        <label class="outputRating"> </label>
+    <button id="knapp">Send it</button>
+    </div>
+
+    <div class="visfilm"></div>
+
+    <div class="nav">
+        <ul>
+            <li><a href="../index.html">Index</a></li>
+            <li><a href="top10.html">Top 10</a></li>
+            <li><a href="bot10.html">Bot 10</a></li>
+            <li><a href="kateg.html">Søk med Kategori</a></li>
+            <li><a href="alle.html">Alle filmer</a></li>
+        </ul>
+    </div>
+
+</div>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+<script>
+    firebase.initializeApp({
+        apiKey: "AIzaSyBgMPvrHxT5aVsoqdJJyAADgjftCUBL-eY",
+        authDomain: "db01firebase.firebaseapp.com",
+        databaseURL: "https://db01firebase.firebaseio.com",
+        projectId: "db01firebase",
+        storageBucket: "db01firebase.appspot.com",
+        messagingSenderId: "678434557876"
+    });
+
+    // Initialize Cloud Firestore through Firebase
+    var db = firebase.firestore();
+
+    var tittelE = document.querySelector('#title');
+    var genreE  = document.querySelector('#genre');
+    var yearE   = document.querySelector('#year');
+    var ratingE = document.querySelector('#rating');
+    var knappE = document.querySelector('#knapp');
+    var outputR = document.querySelector('.outputRating');
+    var eVisFilm = document.querySelector('.visfilm');
+
+    outputR.innerHTML = ratingE.value;
+    ratingE.oninput = function () {
+        outputR.innerHTML = this.value;
+    };
+
+    knappE.addEventListener('click', function () {
+        db.collection('film_db').add({
+            title:  tittelE.value,
+            genre:  genreE.value,
+            year:   yearE.value,
+            rating: ratingE.value*1
+        })
+        .then(function(docRef) {
+            console.log("Filmen er lagt til i databasen med ID: ", docRef.id);
+            tittelE.value   = "";
+            genreE.value    = "";
+            yearE.value     = "";
+            ratingE.innerHTML = 0;
+            outputR.innerHTML = 0;
+            eVisFilm.innerHTML = '<h3>' + tittelE.value + 'ble lagt til i databasen.' + '</h3>';
+        })
+        .catch(function(error) {
+                console.error("Feil ved opplasting til databasen: ", error);
+        });
+    });
+
+</script>
+
+</body>
+</html>

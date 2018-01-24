@@ -19,7 +19,12 @@ for(var lukenummer = 1; lukenummer<=24; lukenummer++){
 */
 
 var pakkerE = document.querySelector('.pakker');
-var ref = db.collection('kalender').orderBy('luke', 'asc');
+var ref = db.collection('kalender').orderBy('luke', 'asc').limit(24);
+
+/***
+ Avgrens til 5 luker (eller bare .limit(5))
+ var ref = db.collection('kalender').where('luke', '<=', 5);
+*/
 
 ref.onSnapshot(function (data) {
     var objekt = data.docs;

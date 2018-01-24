@@ -8,3 +8,23 @@ body{
     background-color: whitesmoke;
     text-align: center;
 }
+
+.green{
+    color: #033b42;
+}
+
+.red{
+    color: red;
+}
+
+.brown{
+    color: saddlebrown;
+}
+
+.star{
+    color: gold;
+    font-size: 70px;
+    position: relative;
+    top: 34px;
+    right: 2px;
+}
