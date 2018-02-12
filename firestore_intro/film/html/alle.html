@@ -15,16 +15,12 @@
     </div>
 
     <div class="skjemaform">
-        <table width="100%">
-            <thead>
-            <tr>
-                <th class="table">Tittel</th><th class="table">Poeng</th>
-            </tr>
-            </thead>
-            <tbody class="filmenetop10">
 
-            </tbody>
-        </table>
+        <h2>Alle filmer</h2>
+
+        <ul id="myUL">
+
+        </ul>
     </div>
 
     <div class="nav">
@@ -33,7 +29,7 @@
             <li><a href="reg.html">Registrering</a></li>
             <li><a href="top10.html">Top 10</a></li>
             <li><a href="bot10.html">Bot 10</a></li>
-
+            <li><a href="kateg.html">Søk med kategori</a></li>
         </ul>
     </div>
 
@@ -54,7 +50,7 @@
     // Initialize Cloud Firestore through Firebase
     var db = firebase.firestore();
 
-    var filmene = document.querySelector('.filmenetop10');
+    var filmene = document.querySelector('#myUL');
 
     var mappe = db.collection('film_db').orderBy('title', 'asc');
     mappe.onSnapshot(function(data) {
@@ -63,7 +59,7 @@
         var dokumenter = data.docs;
         for (var x in dokumenter) {
             var plass = x*1+1
-            filmene.innerHTML += '<tr><th class="table">' + dokumenter[x].data().title + '</th><th class="table">' + dokumenter[x].data().rating + '</th></tr>'
+            filmene.innerHTML += '<li><a href="#">' + dokumenter[x].data().title + ', ' + dokumenter[x].data().rating + '</a></li>'
         }
     });
 

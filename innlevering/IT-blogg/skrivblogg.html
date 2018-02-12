@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>blogginnlegg</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="skriveblogg">
+
+    <div class="skjemainfo">
+        <h3>Skriv et blogg innlegg her:</h3>
+    </div>
+
+    <div class="skjema">
+        <h4>Tittel:</h4> <input type="text" id="tittel" placeholder="Blogg overskrift">
+        <h4>Forfatter:</h4> <input type="text" id="navn" placeholder="Ola Nordmann">
+        <h4>Innlegg:</h4> <textarea id="innlegg"></textarea>
+        <h4>Valgfritt bilde:</h4> <input type="text" id="bilde" placeholder="Bilde url">
+        <button id="knapp">Legg ut!</button>
+    </div>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+<script>
+    firebase.initializeApp({
+        apiKey: "AIzaSyBgMPvrHxT5aVsoqdJJyAADgjftCUBL-eY",
+        authDomain: "db01firebase.firebaseapp.com",
+        databaseURL: "https://db01firebase.firebaseio.com",
+        projectId: "db01firebase",
+        storageBucket: "db01firebase.appspot.com",
+        messagingSenderId: "678434557876"
+    });
+
+    // Initialize Cloud Firestore through Firebase
+    var db = firebase.firestore();
+
+    var tittel = document.querySelector('#tittel');
+    var navn = document.querySelector('#navn');
+    var innlegg = document.querySelector('#innlegg');
+    var bilde = document.querySelector('#bilde');
+    var sendit = document.querySelector('#knapp');
+
+    sendit.addEventListener('click', function () {
+        db.collection('blogg').add({
+            title:       tittel.value,
+            navn:        navn.value,
+            innlegg:     innlegg.value,
+            bilde:       bilde.value
+        })
+        .then(function(docRef) {
+            console.log("Innlegget er lagt ut med ID: ", docRef.id);
+            tittel.value    = "";
+            navn.value      = "";
+            innlegg.value   = "";
+            bilde.value     = "";
+        })
+            .catch(function(error) {
+                console.error("Feil ved opplasting til bloggen: ", error);
+            });
+    });
+</script>
+</body>
+</html>

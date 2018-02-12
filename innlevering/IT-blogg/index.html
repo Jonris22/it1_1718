@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blogg</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="blogg">
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+<script>
+    firebase.initializeApp({
+        apiKey: "AIzaSyBgMPvrHxT5aVsoqdJJyAADgjftCUBL-eY",
+        authDomain: "db01firebase.firebaseapp.com",
+        databaseURL: "https://db01firebase.firebaseio.com",
+        projectId: "db01firebase",
+        storageBucket: "db01firebase.appspot.com",
+        messagingSenderId: "678434557876"
+    });
+
+    // Initialize Cloud Firestore through Firebase
+    var db = firebase.firestore();
+
+    var innlegget = document.querySelector('.blogg');
+
+    var mappe = db.collection('blogg');
+    mappe.onSnapshot(function(data) {
+        innlegget.innerHTML = "";
+        var plass = 0;
+        var dokumenter = data.docs;
+        for (var x in dokumenter) {
+            var plass = x*1+1;
+            innlegget.innerHTML += '<div class="innlegg"><div class="header"><h3>'+ dokumenter[x].data().title +'</h3></div>' + '<div class="main">' +
+                '<p class="tekst">' + dokumenter[x].data().innlegg + '</p>' + '<img src="' + dokumenter[x].data().bilde + '" alt="" class="bilde"></div>' +
+                '<div class="footer"><p>Skrevet av: ' + dokumenter[x].data().navn + '</p></div><div class="hvit"><br><br><br></div></div>'
+        }
+    });
+
+</script>
+</body>
+</html>

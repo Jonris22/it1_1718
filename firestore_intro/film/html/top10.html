@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bottom 10</title>
+    <title>Top 10</title>
 
     <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -11,27 +11,20 @@
 <div class="skjemapakker">
 
     <div class="skjemainfo">
-        <h3>De 10 værste filmene:</h3>
+        <h3>Top 10 filmer:</h3>
     </div>
 
     <div class="skjemaform">
-        <table width="100%">
-            <thead>
-            <tr>
-                <th class="table1">Plassering</th><th class="table2">Tittel</th><th class="table3">Poeng</th>
-            </tr>
-            </thead>
-            <tbody class="filmenetop10">
+        <ul id="myUL">
 
-            </tbody>
-        </table>
+        </ul>
     </div>
 
     <div class="nav">
         <ul>
             <li><a href="../index.html">Index</a></li>
             <li><a href="reg.html">Registrering</a></li>
-            <li><a href="top10.html">Top 10</a></li>
+            <li><a href="bot10.html">Bot 10</a></li>
             <li><a href="kateg.html">Søk med Kategori</a></li>
             <li><a href="alle.html">Alle filmer</a></li>
         </ul>
@@ -54,16 +47,16 @@
     // Initialize Cloud Firestore through Firebase
     var db = firebase.firestore();
 
-    var filmene = document.querySelector('.filmenetop10');
+    var filmene = document.querySelector('#myUL');
 
-    var mappe = db.collection('film_db').orderBy('rating', 'asc').limit(10);
+    var mappe = db.collection('film_db').orderBy('rating', 'desc').limit(10);
     mappe.onSnapshot(function(data) {
         filmene.innerHTML = "";
         var plass = 0;
         var dokumenter = data.docs;
         for (var x in dokumenter) {
             var plass = x*1+1
-            filmene.innerHTML += '<tr><th class="table1">' + plass + '</th><th class="table2">' + dokumenter[x].data().title + '</th><th class="table3">' + dokumenter[x].data().rating + '</th></tr>'
+            filmene.innerHTML += '<li><a href="#">' + dokumenter[x].data().title + ', rangering: ' + dokumenter[x].data().rating + '</a></li>'
         }
     });
 
