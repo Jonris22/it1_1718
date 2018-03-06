@@ -1,0 +1,108 @@
+body{
+    background-color: whitesmoke;
+    color: whitesmoke;
+}
+
+.grid{
+    background-color: #01A7C2;
+    border-radius: 2em;
+    display: grid;
+    grid-template-areas:
+    "header"
+    "nav"
+    "main"
+    "reg"
+    "footer"
+    ;
+}
+.header{
+    grid-area: header;
+    font-size: 120%;
+    padding: 10px;
+}
+.main{
+    grid-area: main;
+}
+.aside1{
+    grid-area: reg;
+    text-align: center;
+}
+.aside2{
+    grid-area: nav;
+}
+.footer{
+    background-color: #0070a4;
+    color: whitesmoke;
+    text-align: center;
+    border-radius: 2em;
+    grid-area: footer;
+}
+
+#listeUtøver{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+#listeUtøver li a{
+    border: 1px solid ghostwhite;
+    background-color: #87cefa;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    text-align: center;
+    border-radius: 15px;
+}
+
+#listeUtøver li a:hover:not(.header) {
+    background-color: #57d;
+    color: whitesmoke;
+}
+
+img{
+    width: 10em;
+    height: 7em;
+}
+
+h3{
+    text-align: center;
+    font-size: 200%;
+    margin: 0;
+    padding: 0;
+}
+
+h4{
+    font-size: 150%;
+    margin: 10px;
+    padding: 0;
+}
+
+#skjema input{
+    margin-right: 2em;
+    margin-left: 2em;
+}
+
+@media (min-width: 800px){
+    .grid{
+        grid-template-columns: auto 250px;
+        grid-template-areas:
+        "header     header"
+        "main       nav"
+        "main       reg"
+        "footer     footer"
+        ;
+    }
+    .aside1{
+        position: relative;
+        left: 1em;
+    }
+
+    #listeUtøver{
+        position: relative;
+        left: 20px;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1em;
+    }
+}

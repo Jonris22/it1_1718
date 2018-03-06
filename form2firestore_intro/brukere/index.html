@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Brukere</title>
+</head>
+<body>
+
+<form id="brukerskjema">
+
+    <input id="inputFornavn" type="text" placeholder="Fornavn" required>
+    <input id="inputEtternavn" type="text" placeholder="Etternavn" required>
+
+    <button id="sendIt" type="submit">Legg til Bruker!</button>
+
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Fornavn</th>
+            <th>Etternavn</th>
+        </tr>
+    </thead>
+
+    <tbody id="tbody">
+
+    </tbody>
+</table>
+
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+<script>
+    firebase.initializeApp({
+        apiKey: "AIzaSyBgMPvrHxT5aVsoqdJJyAADgjftCUBL-eY",
+        authDomain: "db01firebase.firebaseapp.com",
+        databaseURL: "https://db01firebase.firebaseio.com",
+        projectId: "db01firebase",
+        storageBucket: "db01firebase.appspot.com",
+        messagingSenderId: "678434557876"
+    });
+
+    let db = firebase.firestore();
+    let bruker = db.collection("brukere01");
+
+    let brukerskjema = document.querySelector('#brukerskjema');
+    let brukertabell = document.querySelector("#tbody");
+
+    let inputFN = document.querySelector("#inputFornavn");
+    let inputEN = document.querySelector("#inputEtternavn");
+
+    brukerskjema.onsubmit = registrerBruker;
+
+    function registrerBruker(geir) {
+        geir.preventDefault();
+        bruker.add({
+            fornavn: inputFN.value,
+            etternavn: inputEN.value
+        });
+        brukerskjema.reset();
+        inputFN.focus();
+    };
+
+    bruker.onSnapshot(function (data) {
+        let objekt = data.docs;
+
+        brukertabell.innerHTML = "";
+
+        for(let x in objekt){
+            let doc = objekt[x].data();
+
+            brukertabell.innerHTML += `
+            <tr>
+                <td> ${doc.fornavn} </td>
+                <td> ${doc.etternavn} </td>
+            </tr>
+            `
+        }
+    });
+
+</script>
+</body>
+</html>

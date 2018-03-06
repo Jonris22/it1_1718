@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vinteridrett</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grid">
+    <div class="header">
+        <h3>Utøvere</h3>
+    </div>
+
+    <div class="main">
+        <div class="liste">
+            <ul id="listeUtøver">
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="aside1">
+        <div class="reg">
+            <h4>Registrer en utøver!</h4>
+            <form id="skjema">
+                <input id="inputUtøver" type="text" placeholder="Utøver" required> <br>
+                <input id="inputIdrett" type="text" placeholder="Idrett" required> <br>
+                <input id="inputBilde" type="url" placeholder="Bildeadresse" required> <br>
+                <br>
+                <button id="sendIt" type="submit">Registrer</button>
+                <br> <br>
+            </form>
+        </div>
+    </div>
+
+    <div class="aside2">
+
+    </div>
+
+    <div class="footer">
+        <p>Laget av: Jonathan Risung</p>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+<script>
+    firebase.initializeApp({
+        apiKey: "AIzaSyBgMPvrHxT5aVsoqdJJyAADgjftCUBL-eY",
+        authDomain: "db01firebase.firebaseapp.com",
+        databaseURL: "https://db01firebase.firebaseio.com",
+        projectId: "db01firebase",
+        storageBucket: "db01firebase.appspot.com",
+        messagingSenderId: "678434557876"
+    });
+
+    const db = firebase.firestore();
+    let atlet = db.collection("utøvere");
+
+    const skjema = document.querySelector('#skjema');
+    const liste = document.querySelector('#listeUtøver');
+
+    let inputU = document.querySelector("#inputUtøver");
+    let inputI = document.querySelector("#inputIdrett");
+    let inputB = document.querySelector('#inputBilde');
+
+    skjema.onsubmit = registrerAtlet;
+
+    function registrerAtlet(jonathan) {
+        jonathan.preventDefault();
+        atlet.add({
+            atlet: inputU.value,
+            idrett: inputI.value,
+            bilde: inputB.value
+        });
+        skjema.reset();
+        inputU.focus();
+    }
+
+    atlet.onSnapshot(function (data) {
+        let objekt = data.docs;
+
+        liste.innerHTML = "";
+
+        for(let x in objekt){
+            let doc = objekt[x].data();
+
+            liste.innerHTML += `
+            <li><a href="#"><img src="${doc.bilde}"> <br> ${doc.atlet}, ${doc.idrett}</a></li>
+            `
+        }
+    });
+
+</script>
+</body>
+</html>

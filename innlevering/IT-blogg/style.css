@@ -78,7 +78,24 @@ body{
     grid-template-areas:
     "header"
     "main"
+    "link"
     ;
+}
+
+.link{
+    grid-area: link;
+    background-color: #0070a4;
+}
+.link:hover{
+    background-color: whitesmoke;
+}
+.toblogg{
+    text-align: center;
+    font-size: 120%;
+}
+a{
+    text-decoration: none;
+    color: #01A7C2;
 }
 
 .skjemainfo{

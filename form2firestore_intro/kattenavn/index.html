@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Katter</title>
+</head>
+<body>
+
+<form id="katteskjema">
+
+    <input id="inputNavn" type="text" placeholder="Kattens navn" required>
+    <input id="inputRase" type="text" placeholder="Rase" required>
+
+
+    <button id="sendIt" type="submit">Legg til katt!</button>
+
+</form>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+<script>
+    firebase.initializeApp({
+        apiKey: "AIzaSyBgMPvrHxT5aVsoqdJJyAADgjftCUBL-eY",
+        authDomain: "db01firebase.firebaseapp.com",
+        databaseURL: "https://db01firebase.firebaseio.com",
+        projectId: "db01firebase",
+        storageBucket: "db01firebase.appspot.com",
+        messagingSenderId: "678434557876"
+    });
+
+    const db = firebase.firestore();
+    const katt = db.collection("kattenavn");
+
+    const katteskjema = document.querySelector('#kattekjema');
+
+    let inputR = document.querySelector("#inputRase");
+    let inputN = document.querySelector("#inputNavn");
+
+    katteskjema.onsubmit = registrerBruker;
+
+    function registrerBruker(geir) {
+        geir.preventDefault();
+        katt.add({
+            Rase: inputR.value,
+            Kattenavn: inputN.value
+        });
+        katteskjema.reset();
+        inputN.focus();
+    }
+
+
+</script>
+</body>
+</html>
