@@ -1,6 +1,67 @@
 body{
     background-color: whitesmoke;
     color: whitesmoke;
+    margin: 0;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #0070a4;
+    width: 80%;
+    color: black;
+    text-align: center;
+}
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#meny{
+    height: 2.5em;
+    background-color: lightskyblue;
+}
+#meny ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+#meny li{
+    display: inline;
+}
+#meny a{
+    color: whitesmoke;
+    text-decoration: none;
+}
+#meny button{
+    height: 3em;
+    border: transparent;
+    background-color: lightskyblue;
+    color: whitesmoke;
+}
+#meny button:hover{
+    background-color: #0070a4;
 }
 
 .grid{
@@ -9,11 +70,10 @@ body{
     display: grid;
     grid-template-areas:
     "header"
-    "nav"
     "main"
-    "reg"
     "footer"
     ;
+    margin: 10px;
 }
 .header{
     grid-area: header;
@@ -23,12 +83,9 @@ body{
 .main{
     grid-area: main;
 }
-.aside1{
-    grid-area: reg;
-    text-align: center;
-}
-.aside2{
-    grid-area: nav;
+#inputIdrett{
+    width: 173px;
+    height: 20px;
 }
 .footer{
     background-color: #0070a4;
@@ -84,19 +141,15 @@ h4{
     margin-left: 2em;
 }
 
-@media (min-width: 800px){
+@media (min-width: 600px){
     .grid{
-        grid-template-columns: auto 250px;
+        grid-template-columns: auto;
         grid-template-areas:
-        "header     header"
-        "main       nav"
-        "main       reg"
-        "footer     footer"
+        "header"
+        "main"
+        "main"
+        "footer"
         ;
-    }
-    .aside1{
-        position: relative;
-        left: 1em;
     }
 
     #listeUtøver{
@@ -104,5 +157,39 @@ h4{
         left: 20px;
         grid-template-columns: 1fr 1fr;
         grid-gap: 1em;
+        margin: 20px;
+    }
+    #listeUtøver li{
+        display: grid;
+        grid-template-columns: 15em;
+        grid-template-areas:
+        "bilde"
+        "navn"
+        "idrett"
+        "alder"
+        ;
+    }
+    #navn{
+        grid-area: navn;
+    }
+    #idrett{
+        grid-area: idrett;
+    }
+    #alder{
+        grid-area: alder;
+    }
+    #img{
+        grid-area: bilde;
+    }
+}
+
+@media (min-width: 800px) {
+    #listeUtøver{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+@media (min-width: 1000px) {
+    #listeUtøver{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }

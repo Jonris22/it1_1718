@@ -3,8 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <title>Vinteridrett</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<div id="meny">
+    <ul>
+        <li>
+            <button id="myBtn">Registrering</button>
+        </li>
+        <li>
+            <button><a href="index.html">Alle utøvere</a></button>
+        </li>
+    </ul>
+</div>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="reg">
+            <h4>Registrer en utøver!</h4>
+            <form id="skjema">
+                <input id="inputUtøver" type="text" placeholder="Utøver" required> <br> <br>
+                <input id="inputAlder" type="number" placeholder="Alder" required> <br> <br>
+                <select name="idrett" id="inputIdrett">
+                    <option value="">Idrett</option>
+                    <option value="bobsled">bobsled</option>
+                    <option value="langrenn">langrenn</option>
+                    <option value="skihopp">skihopp</option>
+                    <option value="skiskyting">skiskyting</option>
+                    <option value="snowboard">snowboard</option>
+                    <option value="skøyting">skøyting</option>
+                </select> <br> <br>
+                <input id="inputBilde" type="url" placeholder="Bildeadresse" required> <br>
+                <br>
+                <button id="sendIt" type="submit">Registrer</button>
+                <br> <br>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="grid">
+    <div class="header">
+        Søk blandt utøverne med kategori.
+        <select id="idrettKat">
+        <option value="0"> </option>
+        <option value="bobsled">bobsled</option>
+        <option value="langrenn">langrenn</option>
+        <option value="skihopp">skihopp</option>
+        <option value="skiskyting">skiskyting</option>
+        <option value="snowboard">snowboard</option>
+        <option value="skøyting">skøyting</option>
+    </select>
+    </div>
+    <div class="main">
+
+        <div class="liste">
+            <ul id="listeUtøver">
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Laget av: Jonathan Risung</p>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+<script>
+    firebase.initializeApp({
+        apiKey: "AIzaSyBgMPvrHxT5aVsoqdJJyAADgjftCUBL-eY",
+        authDomain: "db01firebase.firebaseapp.com",
+        databaseURL: "https://db01firebase.firebaseio.com",
+        projectId: "db01firebase",
+        storageBucket: "db01firebase.appspot.com",
+        messagingSenderId: "678434557876"
+    });
+
+    // Initialize Cloud Firestore through Firebase
+    const db = firebase.firestore();
+
+    let atlet = db.collection("utøvere");
+
+    const skjema = document.querySelector('#skjema');
+
+    let inputU = document.querySelector("#inputUtøver");
+    let inputA = document.querySelector("#inputAlder");
+    let inputI = document.querySelector("#inputIdrett");
+    let inputB = document.querySelector('#inputBilde');
+
+    skjema.onsubmit = registrerAtlet;
+
+    function registrerAtlet(jonathan) {
+        jonathan.preventDefault();
+        atlet.add({
+            atlet: inputU.value,
+            idrett: inputI.value,
+            bilde: inputB.value,
+            alder: inputA.value
+        });
+        skjema.reset();
+        inputU.focus();
+    }
+
+    let atleter = document.querySelector('#listeUtøver');
+    let idrettKat = document.querySelector('#idrettKat');
+    let search = "";
+    idrettKat.addEventListener('change', function () {
+        search = idrettKat.value;
+        atleter.innerHTML = "";
+        const ref = db.collection('utøvere');
+        let query = ref.where('idrett', '==', search);
+        query.onSnapshot(function (data) {
+            let objekt = data.docs;
+
+            for(let x in objekt){
+                let doc = objekt[x].data();
+                atleter.innerHTML +=`
+            <li><a href="#"><img src="${doc.bilde}" id="bilde"> <p id="navn">Navn: ${doc.atlet}</p> <p id="idrett">Idrett: ${doc.idrett}</p> <p id="alder">Alder: ${doc.alder}</p></a></li>
+            `
+            }
+        });
+    });
+
+    let modal = document.getElementById('myModal');
+    let btn = document.getElementById("myBtn");
+    let span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+    };
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    };
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    };
+
+</script>
 </body>
 </html>

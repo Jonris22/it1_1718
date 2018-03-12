@@ -8,6 +8,43 @@
 </head>
 <body>
 
+<div id="meny">
+    <ul>
+        <li>
+            <button id="myBtn">Registrering</button>
+        </li>
+        <li>
+            <button><a href="kategori.html">Søk med kategori</a></button>
+        </li>
+    </ul>
+</div>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="reg">
+            <h4>Registrer en utøver!</h4>
+            <form id="skjema">
+                <input id="inputUtøver" type="text" placeholder="Utøver" required> <br> <br>
+                <input id="inputAlder" type="number" placeholder="Alder" required> <br> <br>
+                <select name="idrett" id="inputIdrett">
+                    <option value="">Idrett</option>
+                    <option value="bobsled">bobsled</option>
+                    <option value="langrenn">langrenn</option>
+                    <option value="skihopp">skihopp</option>
+                    <option value="skiskyting">skiskyting</option>
+                    <option value="snowboard">snowboard</option>
+                    <option value="skøyting">skøyting</option>
+                </select> <br> <br>
+                <input id="inputBilde" type="url" placeholder="Bildeadresse" required> <br>
+                <br>
+                <button id="sendIt" type="submit">Registrer</button>
+                <br> <br>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="grid">
     <div class="header">
         <h3>Utøvere</h3>
@@ -21,28 +58,12 @@
         </div>
     </div>
 
-    <div class="aside1">
-        <div class="reg">
-            <h4>Registrer en utøver!</h4>
-            <form id="skjema">
-                <input id="inputUtøver" type="text" placeholder="Utøver" required> <br>
-                <input id="inputIdrett" type="text" placeholder="Idrett" required> <br>
-                <input id="inputBilde" type="url" placeholder="Bildeadresse" required> <br>
-                <br>
-                <button id="sendIt" type="submit">Registrer</button>
-                <br> <br>
-            </form>
-        </div>
-    </div>
-
-    <div class="aside2">
-
-    </div>
-
     <div class="footer">
         <p>Laget av: Jonathan Risung</p>
     </div>
 </div>
+
+
 
 <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
@@ -65,6 +86,7 @@
     let inputU = document.querySelector("#inputUtøver");
     let inputI = document.querySelector("#inputIdrett");
     let inputB = document.querySelector('#inputBilde');
+    let inputA = document.querySelector("#inputAlder");
 
     skjema.onsubmit = registrerAtlet;
 
@@ -73,7 +95,8 @@
         atlet.add({
             atlet: inputU.value,
             idrett: inputI.value,
-            bilde: inputB.value
+            bilde: inputB.value,
+            alder: inputA.value
         });
         skjema.reset();
         inputU.focus();
@@ -88,11 +111,32 @@
             let doc = objekt[x].data();
 
             liste.innerHTML += `
-            <li><a href="#"><img src="${doc.bilde}"> <br> ${doc.atlet}, ${doc.idrett}</a></li>
+            <li><a href="#"><img src="${doc.bilde}" id="bilde"> <p id="navn">Navn: ${doc.atlet}</p> <p id="idrett">Idrett: ${doc.idrett}</p> <p id="alder">Alder: ${doc.alder}</p> <button onclick='slettAtlet("${objekt[x].id}")'> Slett </button></a></li>
             `
         }
     });
 
+    let modal = document.getElementById('myModal');
+    let btn = document.getElementById("myBtn");
+    let span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+    };
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    };
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    };
+
+    function slettAtlet(id) {
+        atlet.doc(id).delete();
+    }
 </script>
 </body>
 </html>
