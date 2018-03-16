@@ -16,6 +16,9 @@
         <li>
             <button><a href="kategori.html">Søk med kategori</a></button>
         </li>
+        <li>
+            <button id="myBtn2">Admin side</button>
+        </li>
     </ul>
 </div>
 
@@ -42,6 +45,18 @@
                 <br> <br>
             </form>
         </div>
+    </div>
+</div>
+
+<div id="myModal2" class="modal2">
+    <div class="modal-content2">
+        <span class="close2">&times;</span>
+        <h2>Passord: <span id="spanPassord">passord</span></h2>
+        <form id="admin_passord">
+            <input id="passord" type="text" placeholder="passord" required>
+        </form>
+        <br>
+        <button id="passordTilAdmin">Logg inn</button>
     </div>
 </div>
 
@@ -111,7 +126,7 @@
             let doc = objekt[x].data();
 
             liste.innerHTML += `
-            <li><a href="#"><img src="${doc.bilde}" id="bilde"> <p id="navn">Navn: ${doc.atlet}</p> <p id="idrett">Idrett: ${doc.idrett}</p> <p id="alder">Alder: ${doc.alder}</p> <button onclick='slettAtlet("${objekt[x].id}")'> Slett </button></a></li>
+            <li><a href="#"><img src="${doc.bilde}" id="bilde"> <p id="navn">Navn: ${doc.atlet}</p> <p id="idrett">Idrett: ${doc.idrett}</p> <p id="alder">Alder: ${doc.alder}</p></a></li>
             `
         }
     });
@@ -134,8 +149,35 @@
         }
     };
 
-    function slettAtlet(id) {
-        atlet.doc(id).delete();
+    let modal2 = document.getElementById('myModal2');
+    let btn2 = document.getElementById("myBtn2");
+    let span2 = document.getElementsByClassName("close2")[0];
+
+    btn2.onclick = function() {
+        modal2.style.display = "block";
+    };
+
+    span2.onclick = function() {
+        modal2.style.display = "none";
+    };
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal2.style.display = "none";
+        }
+    };
+
+    const btnAdmin = document.querySelector('#passordTilAdmin');
+    let inputAdmin = document.querySelector('#passord');
+
+    btnAdmin.onclick = function () {
+        if(inputAdmin.value === "passord"){
+            window.open("admin_side.html");
+            inputAdmin.value = "";
+        }
+        else{
+            alert("Feil passord");
+        }
     }
 </script>
 </body>

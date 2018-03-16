@@ -2,13 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Vinteridrett</title>
+    <title>Admin Page</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        body{
+            background-color: grey;
+        }
+    </style>
 </head>
 <body>
 
-<div id="meny">
+<div id="meny2">
     <ul>
         <li>
             <button id="myBtn">Registrering</button>
@@ -17,7 +23,7 @@
             <button><a href="index.html">Alle utøvere</a></button>
         </li>
         <li>
-            <button id="myBtn2">Admin side</button>
+            <button><a href="kategori.html">Søk med kategori</a></button>
         </li>
     </ul>
 </div>
@@ -39,11 +45,6 @@
                     <option value="snowboard">snowboard</option>
                     <option value="skøyting">skøyting</option>
                 </select> <br> <br>
-                <select id="inputNasjonalitet">
-                    <option value="">Nasjonalitet</option>
-                    <option value="norsk">Norsk</option>
-                    <option value="utenlandsk">Ikke norsk</option>
-                </select> <br> <br>
                 <input id="inputBilde" type="url" placeholder="Bildeadresse" required> <br>
                 <br>
                 <button id="sendIt" type="submit">Registrer</button>
@@ -53,41 +54,46 @@
     </div>
 </div>
 
-<div id="myModal2" class="modal2">
-    <div class="modal-content2">
-        <span class="close2">&times;</span>
-        <h2>Passord: <span id="spanPassord">passord</span></h2>
-        <form id="admin_passord">
-            <input id="passord" type="text" placeholder="passord" required>
+<div id="myModal3" class="modal3">
+    <div class="modal-content3">
+        <span class="close3">&times;</span>
+        <h2>Rediger utøver</h2>
+        <form id="skjema2">
+            <input id="inputUtøver2" type="text" placeholder="Utøver" required> <br> <br>
+            <input id="inputAlder2" type="number" placeholder="Alder" required> <br> <br>
+            <select name="idrett2" id="inputIdrett">
+                <option value="">Idrett</option>
+                <option value="bobsled">bobsled</option>
+                <option value="langrenn">langrenn</option>
+                <option value="skihopp">skihopp</option>
+                <option value="skiskyting">skiskyting</option>
+                <option value="snowboard">snowboard</option>
+                <option value="skøyting">skøyting</option>
+            </select> <br> <br>
+            <input id="inputBilde2" type="url" placeholder="Bildeadresse" required> <br>
+            <br>
+            <button id="sendIt2" type="submit">Registrer</button>
+            <br> <br>
         </form>
-        <br>
-        <button id="passordTilAdmin">Logg inn</button>
+        <br> <br>
+        <button id="delIt"> Fjern fra databasen </button>
     </div>
 </div>
 
-<div class="grid">
-    <div class="header">
-        Søk blandt utøverne med kategori.
-        <select id="idrettKat">
-        <option value="0"> </option>
-        <option value="bobsled">bobsled</option>
-        <option value="langrenn">langrenn</option>
-        <option value="skihopp">skihopp</option>
-        <option value="skiskyting">skiskyting</option>
-        <option value="snowboard">snowboard</option>
-        <option value="skøyting">skøyting</option>
-    </select>
+<div class="grid2">
+    <div class="header2">
+        <h3>Utøvere</h3>
     </div>
-    <div class="main">
 
+    <div class="main2">
         <div class="liste">
-            <ul id="listeUtøver">
+            <ul id="listeUtøver2">
 
             </ul>
         </div>
     </div>
 
-    <div class="footer">
+    <div class="footer2">
         <p>Laget av: Jonathan Risung</p>
     </div>
 </div>
@@ -104,17 +110,16 @@
         messagingSenderId: "678434557876"
     });
 
-    // Initialize Cloud Firestore through Firebase
     const db = firebase.firestore();
-
     let atlet = db.collection("utøvere");
 
     const skjema = document.querySelector('#skjema');
+    const liste = document.querySelector('#listeUtøver2');
 
     let inputU = document.querySelector("#inputUtøver");
-    let inputA = document.querySelector("#inputAlder");
     let inputI = document.querySelector("#inputIdrett");
     let inputB = document.querySelector('#inputBilde');
+    let inputA = document.querySelector("#inputAlder");
 
     skjema.onsubmit = registrerAtlet;
 
@@ -130,24 +135,20 @@
         inputU.focus();
     }
 
-    let atleter = document.querySelector('#listeUtøver');
-    let idrettKat = document.querySelector('#idrettKat');
-    let search = "";
-    idrettKat.addEventListener('change', function () {
-        search = idrettKat.value;
-        atleter.innerHTML = "";
-        const ref = db.collection('utøvere');
-        let query = ref.where('idrett', '==', search);
-        query.onSnapshot(function (data) {
-            let objekt = data.docs;
+    atlet.onSnapshot(function (data) {
+        let objekt = data.docs;
 
-            for(let x in objekt){
-                let doc = objekt[x].data();
-                atleter.innerHTML +=`
-            <li><a href="#"><img src="${doc.bilde}" id="bilde"> <p id="navn">Navn: ${doc.atlet}</p> <p id="idrett">Idrett: ${doc.idrett}</p> <p id="alder">Alder: ${doc.alder}</p></a></li>
+        liste.innerHTML = "";
+
+        for(let x in objekt){
+            let doc = objekt[x].data();
+
+            liste.innerHTML += `
+            <li><a href="#">
+            <p id="utøver">${doc.atlet}</p><button class="myBtn3" onclick='rediger("${objekt[x].id}")'>Rediger</button>
+            </a></li>
             `
-            }
-        });
+    }
     });
 
     let modal = document.getElementById('myModal');
@@ -157,29 +158,57 @@
     btn.onclick = function() {
         modal.style.display = "block";
     };
-
     span.onclick = function() {
         modal.style.display = "none";
     };
-
     window.onclick = function(event) {
         if (event.target === modal) {
             modal.style.display = "none";
         }
     };
 
-    const btnAdmin = document.querySelector('#passordTilAdmin');
-    let inputAdmin = document.querySelector('#passord');
+    let modal3 = document.getElementById('myModal3');
+    let span3 = document.getElementsByClassName("close3")[0];
+    let aId;
+    const delIt = document.querySelector('#delIt');
+    let inputU2 = document.querySelector("#inputUtøver2");
+    let inputI2 = document.querySelector("#inputIdrett2");
+    let inputB2 = document.querySelector("#inputBilde2");
+    let inputA2 = document.querySelector("#inputAlder2");
+    const skjema2 = document.querySelector('#skjema2');
 
-    btnAdmin.onclick = function () {
-        if(inputAdmin.value === "passord"){
-            window.open("admin_side.html");
-            inputAdmin.value = "";
-        }
-        else{
-            alert("nei");
-        }
+    function rediger(id) {
+        aId = id;
+        modal3.style.display = "block";
     }
+    span3.onclick = function() {
+        modal3.style.display = "none";
+    };
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal3.style.display = "none";
+        }
+    };
+
+    delIt.onclick = function() {
+        atlet.doc(aId).delete();
+    };
+
+    skjema2.onsubmit = redigerAtlet;
+
+    function redigerAtlet(risung) {
+        risung.preventDefault();
+        atlet.add({
+            atlet: inputU2.value,
+            idrett: inputI2.value,
+            bilde: inputB2.value,
+            alder: inputA2.value
+        });
+        skjema2.reset();
+        inputU2.focus();
+    }
+
+
 </script>
 </body>
 </html>
