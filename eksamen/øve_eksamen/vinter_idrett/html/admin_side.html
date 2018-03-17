@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        body{
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+
+<div id="meny2">
+    <ul>
+        <li>
+            <button id="myBtn">Registrering</button>
+        </li>
+        <li>
+            <button><a href="alle.html">Alle utøvere</a></button>
+        </li>
+        <li>
+            <button><a href="kategori.html">Søk med kategori</a></button>
+        </li>
+    </ul>
+</div>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="reg">
+            <h4>Registrer en utøver!</h4>
+            <form id="skjema">
+                <input id="inputUtøver" type="text" placeholder="Utøver" required> <br> <br>
+                <input id="inputAlder" type="number" placeholder="Alder" required> <br> <br>
+                <select name="idrett" id="inputIdrett">
+                    <option value="">Idrett</option>
+                    <option value="bobsled">bobsled</option>
+                    <option value="langrenn">langrenn</option>
+                    <option value="skihopp">skihopp</option>
+                    <option value="skiskyting">skiskyting</option>
+                    <option value="skøyting">skøyting</option>
+                    <option value="snowboard">snowboard</option>
+                </select> <br> <br>
+                <input id="inputBilde" type="url" placeholder="Bildeadresse" required> <br>
+                <br>
+                <button id="sendIt" type="submit">Registrer</button>
+                <br> <br>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div id="myModal3" class="modal3">
+    <div class="modal-content3">
+        <span class="close3">&times;</span>
+        <h2 class="redh2">Rediger utøver</h2>
+        <form id="skjema2">
+            <input id="inputUtøver2" type="text" placeholder="Utøver" required> <br> <br>
+            <input id="inputAlder2" type="number" placeholder="Alder" required> <br> <br>
+            <select name="idrett" id="inputIdrett2">
+                <option value="">Idrett</option>
+                <option value="bobsled">bobsled</option>
+                <option value="langrenn">langrenn</option>
+                <option value="skihopp">skihopp</option>
+                <option value="skiskyting">skiskyting</option>
+                <option value="skøyting">skøyting</option>
+                <option value="snowboard">snowboard</option>
+            </select> <br> <br>
+            <input id="inputBilde2" type="url" placeholder="Bildeadresse" required> <br>
+            <br>
+            <button id="sendIt2" type="submit" onclick="document.getElementById('sound1').play();">Godta endringer</button>
+            <br> <br>
+        </form>
+        <h2 class="ellerh2">eller</h2>
+        <br> <br>
+        <button id="myBtn4">Fjern fra databasen</button>
+        <div class="tom"></div>
+        <div class="tom2"></div>
+        <div class="tom3"></div>
+    </div>
+</div>
+
+<div id="myModal4" class="modal4">
+    <div class="modal-content4">
+        <span class="close4">&times;</span>
+        <h2>Er du sikker på at du vil slette utøveren?</h2> <br> <br>
+        <button id="jaKnapp">Ja</button> <button id="neiKnapp">Nei</button>
+    </div>
+</div>
+
+<div class="grid2">
+    <div class="header2">
+        <h3>Utøvere</h3>
+    </div>
+
+    <div class="main2">
+        <div class="liste">
+            <ul id="listeUtøver2">
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer2">
+        <p>Laget av: Jonathan Risung</p>
+    </div>
+</div>
+
+<audio id="sound2" src="../media/slett.m4a" preload="auto"> </audio>
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+<script>
+    firebase.initializeApp({
+        apiKey: "AIzaSyBgMPvrHxT5aVsoqdJJyAADgjftCUBL-eY",
+        authDomain: "db01firebase.firebaseapp.com",
+        databaseURL: "https://db01firebase.firebaseio.com",
+        projectId: "db01firebase",
+        storageBucket: "db01firebase.appspot.com",
+        messagingSenderId: "678434557876"
+    });
+
+    const db = firebase.firestore();
+    let atlet = db.collection("utøvere");
+
+    const skjema = document.querySelector('#skjema');
+    const liste = document.querySelector('#listeUtøver2');
+
+    let inputU = document.querySelector("#inputUtøver");
+    let inputI = document.querySelector("#inputIdrett");
+    let inputB = document.querySelector('#inputBilde');
+    let inputA = document.querySelector("#inputAlder");
+
+    skjema.onsubmit = registrerAtlet;
+
+    function registrerAtlet(jonathan) {
+        jonathan.preventDefault();
+        atlet.add({
+            atlet: inputU.value,
+            idrett: inputI.value,
+            bilde: inputB.value,
+            alder: inputA.value
+        });
+        skjema.reset();
+        inputU.focus();
+    }
+
+    atlet.onSnapshot(function (data) {
+        let objekt = data.docs;
+
+        liste.innerHTML = "";
+
+        for(let x in objekt){
+            let doc = objekt[x].data();
+
+            liste.innerHTML += `
+            <li><a href="#">
+            <p id="utøver">${doc.atlet}</p><button class="myBtn3" onclick='rediger("${objekt[x].id}")'>Rediger</button>
+            </a></li>
+            `
+    }
+    });
+
+    let modal = document.getElementById('myModal');
+    let btn = document.getElementById("myBtn");
+    let span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+    };
+    span.onclick = function() {
+        modal.style.display = "none";
+    };
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    };
+
+    let modal3 = document.getElementById('myModal3');
+    let span3 = document.getElementsByClassName("close3")[0];
+    let aId;
+    const delIt = document.querySelector('#delIt');
+    let inputU2 = document.querySelector("#inputUtøver2");
+    let inputI2 = document.querySelector("#inputIdrett2");
+    let inputB2 = document.querySelector("#inputBilde2");
+    let inputA2 = document.querySelector("#inputAlder2");
+    const skjema2 = document.querySelector('#skjema2');
+
+    function rediger(id) {
+        aId = id;
+        modal3.style.display = "block";
+        atlet.doc(aId).get().then(function (doc) {
+            console.log(doc.data());
+            inputU2.value = doc.data().atlet;
+            inputI2.value = doc.data().idrett;
+            inputB2.value = doc.data().bilde;
+            inputA2.value = doc.data().alder;
+        })
+    }
+    span3.onclick = function() {
+        modal3.style.display = "none";
+    };
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal3.style.display = "none";
+        }
+    };
+
+    skjema2.onsubmit = redigerAtlet;
+
+    function redigerAtlet(risung) {
+        risung.preventDefault();
+        atlet.doc(aId).update({
+            atlet: inputU2.value,
+            idrett: inputI2.value,
+            bilde: inputB2.value,
+            alder: inputA2.value
+        });
+        alert('Endring fullført');
+    }
+
+
+    jaKnapp.onclick = function() {
+        atlet.doc(aId).delete();
+        document.getElementById('sound2').play();
+        alert('Utøver fjernet.');
+        modal4.style.display = "none";
+        modal3.style.display = "none";
+    };
+    neiKnapp.onclick = function () {
+        modal4.style.display = "none";
+    };
+
+    let modal4 = document.getElementById('myModal4');
+    let btn4 = document.getElementById("myBtn4");
+    let span4 = document.getElementsByClassName("close4")[0];
+
+    btn4.onclick = function () {
+        modal4.style.display = "block";
+    };
+    span4.onclick = function() {
+        modal4.style.display = "none";
+    };
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal4.style.display = "none";
+        }
+    };
+
+</script>
+</body>
+</html>

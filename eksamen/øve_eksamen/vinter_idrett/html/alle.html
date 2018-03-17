@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Vinteridrett</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
@@ -14,7 +14,7 @@
             <button id="myBtn">Registrering</button>
         </li>
         <li>
-            <button><a href="index.html">Alle utøvere</a></button>
+            <button><a href="kategori.html">Søk med kategori</a></button>
         </li>
         <li>
             <button id="myBtn2">Admin side</button>
@@ -36,13 +36,8 @@
                     <option value="langrenn">langrenn</option>
                     <option value="skihopp">skihopp</option>
                     <option value="skiskyting">skiskyting</option>
-                    <option value="snowboard">snowboard</option>
                     <option value="skøyting">skøyting</option>
-                </select> <br> <br>
-                <select id="inputNasjonalitet">
-                    <option value="">Nasjonalitet</option>
-                    <option value="norsk">Norsk</option>
-                    <option value="utenlandsk">Ikke norsk</option>
+                    <option value="snowboard">snowboard</option>
                 </select> <br> <br>
                 <input id="inputBilde" type="url" placeholder="Bildeadresse" required> <br>
                 <br>
@@ -52,7 +47,6 @@
         </div>
     </div>
 </div>
-
 <div id="myModal2" class="modal2">
     <div class="modal-content2">
         <span class="close2">&times;</span>
@@ -67,19 +61,10 @@
 
 <div class="grid">
     <div class="header">
-        Søk blandt utøverne med kategori.
-        <select id="idrettKat">
-        <option value="0"> </option>
-        <option value="bobsled">bobsled</option>
-        <option value="langrenn">langrenn</option>
-        <option value="skihopp">skihopp</option>
-        <option value="skiskyting">skiskyting</option>
-        <option value="snowboard">snowboard</option>
-        <option value="skøyting">skøyting</option>
-    </select>
+        <h3>Utøvere</h3>
     </div>
-    <div class="main">
 
+    <div class="main">
         <div class="liste">
             <ul id="listeUtøver">
 
@@ -91,6 +76,8 @@
         <p>Laget av: Jonathan Risung</p>
     </div>
 </div>
+
+
 
 <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
@@ -104,17 +91,16 @@
         messagingSenderId: "678434557876"
     });
 
-    // Initialize Cloud Firestore through Firebase
     const db = firebase.firestore();
-
     let atlet = db.collection("utøvere");
 
     const skjema = document.querySelector('#skjema');
+    const liste = document.querySelector('#listeUtøver');
 
     let inputU = document.querySelector("#inputUtøver");
-    let inputA = document.querySelector("#inputAlder");
     let inputI = document.querySelector("#inputIdrett");
     let inputB = document.querySelector('#inputBilde');
+    let inputA = document.querySelector("#inputAlder");
 
     skjema.onsubmit = registrerAtlet;
 
@@ -130,24 +116,18 @@
         inputU.focus();
     }
 
-    let atleter = document.querySelector('#listeUtøver');
-    let idrettKat = document.querySelector('#idrettKat');
-    let search = "";
-    idrettKat.addEventListener('change', function () {
-        search = idrettKat.value;
-        atleter.innerHTML = "";
-        const ref = db.collection('utøvere');
-        let query = ref.where('idrett', '==', search);
-        query.onSnapshot(function (data) {
-            let objekt = data.docs;
+    atlet.onSnapshot(function (data) {
+        let objekt = data.docs;
 
-            for(let x in objekt){
-                let doc = objekt[x].data();
-                atleter.innerHTML +=`
+        liste.innerHTML = "";
+
+        for(let x in objekt){
+            let doc = objekt[x].data();
+
+            liste.innerHTML += `
             <li><a href="#"><img src="${doc.bilde}" id="bilde"> <p id="navn">Navn: ${doc.atlet}</p> <p id="idrett">Idrett: ${doc.idrett}</p> <p id="alder">Alder: ${doc.alder}</p></a></li>
             `
-            }
-        });
+        }
     });
 
     let modal = document.getElementById('myModal');
@@ -168,6 +148,24 @@
         }
     };
 
+    let modal2 = document.getElementById('myModal2');
+    let btn2 = document.getElementById("myBtn2");
+    let span2 = document.getElementsByClassName("close2")[0];
+
+    btn2.onclick = function() {
+        modal2.style.display = "block";
+    };
+
+    span2.onclick = function() {
+        modal2.style.display = "none";
+    };
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal2.style.display = "none";
+        }
+    };
+
     const btnAdmin = document.querySelector('#passordTilAdmin');
     let inputAdmin = document.querySelector('#passord');
 
@@ -175,9 +173,10 @@
         if(inputAdmin.value === "passord"){
             window.open("admin_side.html");
             inputAdmin.value = "";
+            modal2.style.display = "none";
         }
         else{
-            alert("nei");
+            alert("Feil passord");
         }
     }
 </script>

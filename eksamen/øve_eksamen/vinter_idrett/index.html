@@ -2,183 +2,124 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Vinteridrett</title>
+    <title>Vinter idrett</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        body{
+            margin: 25px;
+        }
+    </style>
 </head>
 <body>
 
-<div id="meny">
-    <ul>
-        <li>
-            <button id="myBtn">Registrering</button>
-        </li>
-        <li>
-            <button><a href="kategori.html">Søk med kategori</a></button>
-        </li>
-        <li>
-            <button id="myBtn2">Admin side</button>
-        </li>
-    </ul>
-</div>
-
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <div class="reg">
-            <h4>Registrer en utøver!</h4>
-            <form id="skjema">
-                <input id="inputUtøver" type="text" placeholder="Utøver" required> <br> <br>
-                <input id="inputAlder" type="number" placeholder="Alder" required> <br> <br>
-                <select name="idrett" id="inputIdrett">
-                    <option value="">Idrett</option>
-                    <option value="bobsled">bobsled</option>
-                    <option value="langrenn">langrenn</option>
-                    <option value="skihopp">skihopp</option>
-                    <option value="skiskyting">skiskyting</option>
-                    <option value="snowboard">snowboard</option>
-                    <option value="skøyting">skøyting</option>
-                </select> <br> <br>
-                <input id="inputBilde" type="url" placeholder="Bildeadresse" required> <br>
-                <br>
-                <button id="sendIt" type="submit">Registrer</button>
-                <br> <br>
-            </form>
-        </div>
+<div class="index">
+    <div class="iHeader">
+        <h1>Vinterutøver Registeret</h1>
     </div>
-</div>
+    <div class="iLogo">
+        <a href="html/alle.html"><img src="media/logo.png" alt=""></a>
+    </div>
+    <div class="iMain">
+        <h3>Om Vinterutøver Registeret(VR):</h3>
+        <p>
+            VR er et register over forskjellige vinterutøvere fra flere forskjellige nasjoner og vinteridretter.
+            Gründeren bak dette prosjektet er Harald Eksamensoppgave, og koderen/designeren er Jonathan Risung.
+            For å komme til registeret trykk <a href="html/alle.html">her</a> eller trykk på logoen over.
+            Du kan også få se og vite litt om idrettene til de registrerbare utøverne lengre ned på denne siden.
+        </p>
 
-<div id="myModal2" class="modal2">
-    <div class="modal-content2">
-        <span class="close2">&times;</span>
-        <h2>Passord: <span id="spanPassord">passord</span></h2>
-        <form id="admin_passord">
-            <input id="passord" type="text" placeholder="passord" required>
-        </form>
+        <br><br>
+
+        <h4>Bobsled:</h4>
+
+        <video width="320" height="240" controls>
+            <source src="media/video_idrett/bobsled.mp4" type="video/mp4">
+        </video>
+
+        <p>
+            Bobsled eller bobsleigh er en vinteridrett der to eller fire personer kjører en kjelke med meier gjennom en spesialbygget, smal, kurvete islagt bane. Moderne bobbaner bør være minst 1500 meter lange og ha minst 15 kurver, og det er ikke uvanlig med hastigheter opptil 130 km/t. Farten drives av tyngdekraft etter et kraftfullt tilløp fra utøverne. Løpet består av å finne de ideelle sporet gjennom banen. Dette gjøres blant annet gjennom små, myke, kontrollerte vektforskyvninger sidelengs.
+        </p>
+            <h6>
+                Hentet fra: <a href="https://no.wikipedia.org/wiki/Bobsleigh">Wikipedia</a> og <a href="https://www.youtube.com/watch?v=QPc5YJkNoqo">Youtube</a>
+            </h6>
+
         <br>
-        <button id="passordTilAdmin">Logg inn</button>
+
+        <h4>Langrenn:</h4>
+
+        <video width="320" height="240" controls>
+            <source src="media/video_idrett/langrenn.mp4" type="video/mp4">
+        </video>
+
+        <p>
+            Langrenn er en konkurranseidrett utviklet fra skigåing. Langrenn utøves på to hovedmåter, klassisk stil og fristil (skøyting). Når en løper går klassisk, følger skiene et spor, og som regel legges det festesmurning under skiene for at de ikke så lett skal gli når de skyves bakover for fremdrift. I fristil skyver løperen skiene utover fra kroppen slik som skøyteløpere.
+        </p>
+            <h6>
+                Hentet fra: <a href="https://no.wikipedia.org/wiki/Langrenn">Wikipedia</a> og <a href="https://www.youtube.com/watch?v=UVp4jllht0c">Youtube</a>
+            </h6>
+
+        <br>
+
+        <h4>Skihopp:</h4>
+
+        <video width="320" height="240" controls>
+            <source src="media/video_idrett/skihopp.mp4" type="video/mp4">
+        </video>
+
+        <p>
+            Skihopping er en vinteridrett tilhørende nordiske grener hvor utøveren starter med å kjøre ned et ovarenn, gjerne fra et stillas, og ut på et rampeliknende hopp hvorfra utøveren tar sats og forsøker å sveve over kulen og deretter så langt nedover unnarennet som mulig før nedslaget (landingen), det hele gjennomført så stilfullt som mulig, og avslutter ved å renne ned overgangen og ut på sletta.
+        </p>
+            <h6>Hentet fra: <a href="https://no.wikipedia.org/wiki/Skihopping">Wikipedia</a> og <a href="https://www.youtube.com/watch?v=Ya-0A6OLypw">Youtube</a></h6>
+
+        <br>
+
+        <h4>Skiskyting:</h4>
+
+        <video width="320" height="240" controls>
+            <source src="media/video_idrett/skiskyting.mp4" type="video/mp4">
+        </video>
+
+        <p>
+            Skiskyting er en vinteridrettsgren der man kombinerer to helt ulike idretter, langrenn og skyting. Utøverne går runder i en skiløype, før de skyter mot fem blinker. Hvis utøveren bommer på en eller flere blinker, straffes utøveren med strafferunde(r) eller tidsstraff. Skiskyting har blitt en svært populær TV-idrett, spesielt i Tyskland, Russland og Norge.
+        </p>
+            <h6>Hentet fra: <a href="https://no.wikipedia.org/wiki/Skiskyting">Wikipedia</a> og <a href="https://www.youtube.com/watch?v=K_kr4qOTeu4">Youtube</a></h6>
+
+        <br>
+
+        <h4>Skøyting:</h4>
+
+        <video width="320" height="240" controls>
+            <source src="media/video_idrett/skøyting.mp4" type="video/mp4">
+        </video>
+
+        <p>
+            Hurtigløp på skøyter er en idrettsgren hvor utøverne konkurrerer om å gå på skøyter på isen så fort som mulig. Betegnelsen brukes spesielt om den grenen av skøytesporten der løperne starter parvis i delte baner på en rundbane, der løperne rangeres etter tid (og eventuelt sammenlagt poengsum etter 4 løp).
+        </p>
+            <h6>Hentet fra: <a href="https://no.wikipedia.org/wiki/Hurtigl%C3%B8p_p%C3%A5_sk%C3%B8yter">Wikipedia</a> og <a href="https://www.youtube.com/watch?v=VXtqvBOlibY">Youtube</a></h6>
+
+        <br>
+
+        <h4>Snowboard:</h4>
+
+        <video width="320" height="240" controls>
+            <source src="media/video_idrett/snowboard.mp4" type="video/mp4">
+        </video>
+
+        <p>
+            Snøbrett (engelsk: snowboard) er et flatt brett som man kan kjøre, eller «surfe», på snøen med. En snøbrettkjører blir gjerne kalt en snowboarder.
+            Snøbrett har sin opprinnelse i de noe lengre og tyngre brettene som man brukte for å surfe på vannbølger. Det var bølgesurfere fra California som startet med snøbrett da de tok surfbrettene opp i fjellet om vinteren på slutten av 1960-tallet. Siden da har utviklingen gått fort, og i dag selges det over 500 000 snøbrett på verdensbasis hvert år.
+        </p>
+            <h6>Hentet fra: <a href="https://no.wikipedia.org/wiki/Sn%C3%B8brett">Wikipedia</a> og <a href="https://www.youtube.com/watch?v=rWo2_NTY9OI">Youtube</a></h6>
+
+
+
     </div>
-</div>
-
-<div class="grid">
-    <div class="header">
-        <h3>Utøvere</h3>
-    </div>
-
-    <div class="main">
-        <div class="liste">
-            <ul id="listeUtøver">
-
-            </ul>
-        </div>
-    </div>
-
-    <div class="footer">
+    <div class="iFooter">
         <p>Laget av: Jonathan Risung</p>
     </div>
 </div>
 
-
-
-<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
-<script>
-    firebase.initializeApp({
-        apiKey: "AIzaSyBgMPvrHxT5aVsoqdJJyAADgjftCUBL-eY",
-        authDomain: "db01firebase.firebaseapp.com",
-        databaseURL: "https://db01firebase.firebaseio.com",
-        projectId: "db01firebase",
-        storageBucket: "db01firebase.appspot.com",
-        messagingSenderId: "678434557876"
-    });
-
-    const db = firebase.firestore();
-    let atlet = db.collection("utøvere");
-
-    const skjema = document.querySelector('#skjema');
-    const liste = document.querySelector('#listeUtøver');
-
-    let inputU = document.querySelector("#inputUtøver");
-    let inputI = document.querySelector("#inputIdrett");
-    let inputB = document.querySelector('#inputBilde');
-    let inputA = document.querySelector("#inputAlder");
-
-    skjema.onsubmit = registrerAtlet;
-
-    function registrerAtlet(jonathan) {
-        jonathan.preventDefault();
-        atlet.add({
-            atlet: inputU.value,
-            idrett: inputI.value,
-            bilde: inputB.value,
-            alder: inputA.value
-        });
-        skjema.reset();
-        inputU.focus();
-    }
-
-    atlet.onSnapshot(function (data) {
-        let objekt = data.docs;
-
-        liste.innerHTML = "";
-
-        for(let x in objekt){
-            let doc = objekt[x].data();
-
-            liste.innerHTML += `
-            <li><a href="#"><img src="${doc.bilde}" id="bilde"> <p id="navn">Navn: ${doc.atlet}</p> <p id="idrett">Idrett: ${doc.idrett}</p> <p id="alder">Alder: ${doc.alder}</p></a></li>
-            `
-        }
-    });
-
-    let modal = document.getElementById('myModal');
-    let btn = document.getElementById("myBtn");
-    let span = document.getElementsByClassName("close")[0];
-
-    btn.onclick = function() {
-        modal.style.display = "block";
-    };
-
-    span.onclick = function() {
-        modal.style.display = "none";
-    };
-
-    window.onclick = function(event) {
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
-    };
-
-    let modal2 = document.getElementById('myModal2');
-    let btn2 = document.getElementById("myBtn2");
-    let span2 = document.getElementsByClassName("close2")[0];
-
-    btn2.onclick = function() {
-        modal2.style.display = "block";
-    };
-
-    span2.onclick = function() {
-        modal2.style.display = "none";
-    };
-
-    window.onclick = function(event) {
-        if (event.target === modal) {
-            modal2.style.display = "none";
-        }
-    };
-
-    const btnAdmin = document.querySelector('#passordTilAdmin');
-    let inputAdmin = document.querySelector('#passord');
-
-    btnAdmin.onclick = function () {
-        if(inputAdmin.value === "passord"){
-            window.open("admin_side.html");
-            inputAdmin.value = "";
-        }
-        else{
-            alert("Feil passord");
-        }
-    }
-</script>
 </body>
 </html>
