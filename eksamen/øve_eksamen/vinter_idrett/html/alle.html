@@ -16,9 +16,6 @@
         <li>
             <button><a href="kategori.html">Søk med kategori</a></button>
         </li>
-        <li>
-            <button id="myBtn2">Admin side</button>
-        </li>
     </ul>
 </div>
 
@@ -50,9 +47,9 @@
 <div id="myModal2" class="modal2">
     <div class="modal-content2">
         <span class="close2">&times;</span>
-        <h2>Passord: <span id="spanPassord">passord</span></h2>
+        <h2>Skriv inn passord</h2>
         <form id="admin_passord">
-            <input id="passord" type="text" placeholder="passord" required>
+            <input id="passord" type="password" placeholder="passord" required>
         </form>
         <br>
         <button id="passordTilAdmin">Logg inn</button>
@@ -148,13 +145,32 @@
         }
     };
 
-    let modal2 = document.getElementById('myModal2');
-    let btn2 = document.getElementById("myBtn2");
-    let span2 = document.getElementsByClassName("close2")[0];
+    let passordDB = db.collection("passord");
+    const meny = document.querySelector('#meny');
+    let passord;
+    let aId;
 
-    btn2.onclick = function() {
+    passordDB.onSnapshot(function (data) {
+        let objekt2 = data.docs;
+
+        for(let x in objekt2){
+            meny.innerHTML += `
+            <li class="outofPlaceLI">
+            <button id="myBtn2" onclick='passordF("${objekt2[x].id}")'>Admin side</button>
+            </li>
+            `
+        }
+    });
+    function passordF(id) {
+        aId = id;
+        passordDB.doc(aId).get().then(function (doc) {
+            passord = doc.data().passord;
+        });
         modal2.style.display = "block";
-    };
+    }
+
+    let modal2 = document.getElementById('myModal2');
+    let span2 = document.getElementsByClassName("close2")[0];
 
     span2.onclick = function() {
         modal2.style.display = "none";
@@ -167,17 +183,17 @@
     };
 
     const btnAdmin = document.querySelector('#passordTilAdmin');
-    let inputAdmin = document.querySelector('#passord');
+        let inputAdmin = document.querySelector('#passord');
 
-    btnAdmin.onclick = function () {
-        if(inputAdmin.value === "passord"){
-            window.open("admin_side.html");
-            inputAdmin.value = "";
-            modal2.style.display = "none";
-        }
-        else{
-            alert("Feil passord");
-        }
+        btnAdmin.onclick = function () {
+            if(inputAdmin.value === passord){
+                window.open("admin_side.html");
+                inputAdmin.value = "";
+                modal2.style.display = "none";
+            }
+            else{
+                alert("Feil passord");
+            }
     }
 </script>
 </body>
