@@ -8,13 +8,15 @@
 </head>
 <body>
 
+<a href="../index.html"><img src="../media/logo.png" alt="" id="imgLogo"></a>
+
 <div id="meny">
-    <ul>
+    <ul id="ULmeny">
         <li>
-            <button id="myBtn">Registrering</button>
+            <button onclick="redig()" id="myBtn">Registrering</button>
         </li>
         <li>
-            <button><a href="kategori.html">Søk med kategori</a></button>
+            <a href="kategori.html"><button>Søk med kategori</button></a>
         </li>
     </ul>
 </div>
@@ -34,6 +36,7 @@
                     <option value="skihopp">skihopp</option>
                     <option value="skiskyting">skiskyting</option>
                     <option value="skøyting">skøyting</option>
+                    <option value="slalåm">slalåm</option>
                     <option value="snowboard">snowboard</option>
                 </select> <br> <br>
                 <input id="inputBilde" type="url" placeholder="Bildeadresse" required> <br>
@@ -44,6 +47,7 @@
         </div>
     </div>
 </div>
+
 <div id="myModal2" class="modal2">
     <div class="modal-content2">
         <span class="close2">&times;</span>
@@ -128,12 +132,11 @@
     });
 
     let modal = document.getElementById('myModal');
-    let btn = document.getElementById("myBtn");
     let span = document.getElementsByClassName("close")[0];
 
-    btn.onclick = function() {
+    function redig() {
         modal.style.display = "block";
-    };
+    }
 
     span.onclick = function() {
         modal.style.display = "none";
@@ -146,7 +149,7 @@
     };
 
     let passordDB = db.collection("passord");
-    const meny = document.querySelector('#meny');
+    const meny = document.querySelector('#ULmeny');
     let passord;
     let aId;
 

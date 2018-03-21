@@ -14,16 +14,18 @@
 </head>
 <body>
 
+<a href="../index.html"><img src="../media/logoA.png" alt="" id="imgLogo"></a>
+
 <div id="meny2">
-    <ul>
+    <ul id="ULmeny2">
         <li>
-            <button id="myBtn">Registrering</button>
+            <button onclick="redig()" id="myBtn">Registrering</button>
         </li>
         <li>
-            <button><a href="alle.html">Alle utøvere</a></button>
+            <a href="alle.html"><button>Alle utøvere</button></a>
         </li>
         <li>
-            <button><a href="kategori.html">Søk med kategori</a></button>
+            <a href="kategori.html"><button>Søk med kategori</button></a>
         </li>
     </ul>
 </div>
@@ -43,6 +45,7 @@
                     <option value="skihopp">skihopp</option>
                     <option value="skiskyting">skiskyting</option>
                     <option value="skøyting">skøyting</option>
+                    <option value="slalåm">slalåm</option>
                     <option value="snowboard">snowboard</option>
                 </select> <br> <br>
                 <input id="inputBilde" type="url" placeholder="Bildeadresse" required> <br>
@@ -69,6 +72,7 @@
                 <option value="skihopp">skihopp</option>
                 <option value="skiskyting">skiskyting</option>
                 <option value="skøyting">skøyting</option>
+                <option value="slalåm">slalåm</option>
                 <option value="snowboard">snowboard</option>
             </select> <br> <br>
             <input id="inputBilde2" type="url" placeholder="Bildeadresse" required> <br>
@@ -93,9 +97,23 @@
     </div>
 </div>
 
+<div id="myModal5" class="modal5">
+    <div class="modal-content5">
+        <span class="close5">&times;</span>
+            <form class="skjema5">
+                <input type="text" id="inputPassord" placeholder="passord" required>
+                <button id="myBtn5" type="submit">Endre passord</button>
+            </form>
+    </div>
+</div>
+
+<br>
+
 <div class="grid2">
     <div class="header2">
         <h3>Utøvere</h3>
+        <input type="text" id="mySearch" placeholder="Søk på atlet" title="Skriv inn navn">
+        <button onclick="myFunction()">Søk</button>
     </div>
 
     <div class="main2">
@@ -166,15 +184,16 @@
     });
 
     let modal = document.getElementById('myModal');
-    let btn = document.getElementById("myBtn");
     let span = document.getElementsByClassName("close")[0];
 
-    btn.onclick = function() {
+    function redig() {
         modal.style.display = "block";
-    };
+    }
+
     span.onclick = function() {
         modal.style.display = "none";
     };
+
     window.onclick = function(event) {
         if (event.target === modal) {
             modal.style.display = "none";
@@ -227,7 +246,6 @@
     jaKnapp.onclick = function() {
         atlet.doc(aId).delete();
         document.getElementById('sound2').play();
-        alert('Utøver fjernet.');
         modal4.style.display = "none";
         modal3.style.display = "none";
     };
@@ -250,6 +268,71 @@
             modal4.style.display = "none";
         }
     };
+
+
+    let modal5 = document.getElementById('myModal5');
+    let span5 = document.getElementsByClassName("close5")[0];
+    let passId;
+    let inputP = document.querySelector("#inputPassord");
+    let passordDB = db.collection("passord");
+    const meny = document.querySelector('#ULmeny2');
+    const btn5 = document.querySelector('#myBtn5');
+
+    passordDB.onSnapshot(function (data) {
+        let objekt3 = data.docs;
+
+        for(let x in objekt3){
+            meny.innerHTML += `
+            <li class="outofPlaceLI">
+            <button id="myBtn3" onclick='pass("${objekt3[x].id}")'>Bytt passord</button>
+            </li>
+            `
+        }
+    });
+
+    function pass(id) {
+        passId = id;
+        modal5.style.display = "block";
+        passordDB.doc(passId).get().then(function (doc) {
+            console.log(doc.data());
+            inputP.value = doc.data().passord;
+        })
+    }
+    span5.onclick = function() {
+        modal5.style.display = "none";
+    };
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal5.style.display = "none";
+        }
+    };
+
+    btn5.onclick = byttPass;
+
+    function byttPass(elias) {
+        elias.preventDefault();
+        passordDB.doc(passId).update({
+            passord: inputP.value
+        });
+        alert('Endring fullført');
+    }
+
+    function myFunction() {
+        let input, filter, ul, li, a, i;
+        input = document.getElementById("mySearch");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("listeUtøver2");
+        li = ul.getElementsByTagName("li");
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+
+            }
+        }
+    }
 
 </script>
 </body>

@@ -8,13 +8,15 @@
 </head>
 <body>
 
+<a href="../index.html"><img src="../media/logo.png" alt="" id="imgLogo"></a>
+
 <div id="meny">
-    <ul>
+    <ul id="ULmeny">
         <li>
-            <button id="myBtn">Registrering</button>
+            <button onclick="redig()" id="myBtn">Registrering</button>
         </li>
         <li>
-            <button><a href="alle.html">Alle utøvere</a></button>
+            <a href="alle.html"><button>Alle utøvere</button></a>
         </li>
     </ul>
 </div>
@@ -34,6 +36,7 @@
                     <option value="skihopp">skihopp</option>
                     <option value="skiskyting">skiskyting</option>
                     <option value="skøyting">skøyting</option>
+                    <option value="slalåm">slalåm</option>
                     <option value="snowboard">snowboard</option>
                 </select> <br> <br>
                 <input id="inputBilde" type="url" placeholder="Bildeadresse" required> <br>
@@ -67,6 +70,7 @@
             <option value="skihopp">skihopp</option>
             <option value="skiskyting">skiskyting</option>
             <option value="skøyting">skøyting</option>
+            <option value="slalåm">slalåm</option>
             <option value="snowboard">snowboard</option>
         </select>
     </div>
@@ -143,12 +147,11 @@
     });
 
     let modal = document.getElementById('myModal');
-    let btn = document.getElementById("myBtn");
     let span = document.getElementsByClassName("close")[0];
 
-    btn.onclick = function() {
+    function redig() {
         modal.style.display = "block";
-    };
+    }
 
     span.onclick = function() {
         modal.style.display = "none";
@@ -162,7 +165,7 @@
 
 
     let passordDB = db.collection("passord");
-    const meny = document.querySelector('#meny');
+    const meny = document.querySelector('#ULmeny');
     let passord;
     let aId;
 
@@ -170,8 +173,6 @@
         let objekt2 = data.docs;
 
         for(let x in objekt2){
-            let doc2 = objekt2[x].data();
-
             meny.innerHTML += `
             <li class="outofPlaceLI">
             <button id="myBtn2" onclick='passordF("${objekt2[x].id}")'>Admin side</button>
